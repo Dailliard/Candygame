@@ -1,4 +1,4 @@
-# Calculatrice-C
+# Animal Game
 Projet collaboratif en langage C développé dans un cadre pédagogique (ECE Paris).
 Cette application implémente un jeu en ligne de commande, organisée de façon modulaire :
 - ‘main.c‘ : 
