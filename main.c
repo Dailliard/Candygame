@@ -1,6 +1,8 @@
+#include "visual.h"
+
 #include <stdio.h>
 
 int main() {
-    printf("Hello, World!\n");
+    menu();
     return 0;
 }
