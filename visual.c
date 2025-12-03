@@ -26,17 +26,10 @@ void rules(void){
 void menu(void) {
     char action;
     do{
-        if(action == '4'){
-            break;
-        }else if(action == '3'){
-            rules();
-        }else if(action == '2'){
-            //load_game();
-            break;
-        }else if(action == '1'){
-            //new_game();
-            break;
-        }
+        if(action == '4')break;
+        else if(action == '3') rules();
+        else if(action == '2'){ /**load_game();**/ break;}
+        else if(action == '1'){ /**new_game();**/ break;}
         system("cls");
         int choice;
         printf("ECE HEROES\n");
