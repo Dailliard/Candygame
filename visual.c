@@ -1,9 +1,19 @@
 #include "visual.h"
+#include "game.h"
+#include "const.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
 #include <windows.h>
+
+void viewmap(int tab[Y][X]){
+    for(int y = 0; y < Y; y++){
+        for(int x =  0; x < X; y++){
+            printf("%d",tab[y][x]);
+        }
+    }
+}
 
 void rules(void){
     char action;
@@ -29,7 +39,7 @@ void menu(void) {
         if(action == '4')break;
         else if(action == '3') rules();
         else if(action == '2'){ /**load_game();**/ break;}
-        else if(action == '1'){ /**new_game();**/ break;}
+        else if(action == '1'){ new_game(); break;}
         system("cls");
         int choice;
         printf("ECE HEROES\n");
