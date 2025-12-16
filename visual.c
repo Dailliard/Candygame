@@ -1,17 +1,20 @@
-#include "visual.h"
-#include "game.h"
-#include "const.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
 #include <windows.h>
 
+#include "visual.h"
+#include "game.h"
+#include "const.h"
+
+
+
 void viewmap(int tab[Y][X]){
     for(int y = 0; y < Y; y++){
-        for(int x =  0; x < X; y++){
-            printf("%d",tab[y][x]);
+        for(int x =  0; x < X; x++){
+            printf("|%d|",tab[y][x]);
         }
+        printf("\n");
     }
 }
 
