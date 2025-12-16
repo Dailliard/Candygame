@@ -10,7 +10,7 @@ void createtab(int tab[Y][X]){
     srand(time(NULL));
     for(int y = 0; y < Y; y++){
         for(int x =  0; x < X; x++){
-            tab[y][x] = rand()%10;
+            tab[y][x] = rand()%9 +1;
         }
     }
 }
