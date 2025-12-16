@@ -1,2 +1,2 @@
-#define Y 16
-#define X 32
+#define Y 5
+#define X 10

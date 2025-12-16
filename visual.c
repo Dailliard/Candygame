@@ -10,6 +10,7 @@
 
 
 void viewmap(int tab[Y][X]){
+    system("cls");
     for(int y = 0; y < Y; y++){
         for(int x =  0; x < X; x++){
             printf("|%d|",tab[y][x]);
