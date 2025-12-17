@@ -4,6 +4,7 @@
 #include "const.h"
 #include "visual.h"
 #include "create.h"
+#include "forme.h"
 
 int takecoo(int *y, int *x){
     //system("cls");
@@ -46,13 +47,14 @@ void level1(){
     int tab[Y][X];
     createtab(tab);
     viewmap(tab);
-    int coups = 10;
+    int coups = 0;
     int x,y,direction;
     do{
         direction = takecoo(&y,&x);
         change(tab,y,x,direction);
         viewmap(tab);
         coups--;
+        recherche_formes(tab);
     }while(coups!=0);
 }
 

@@ -1,0 +1,1 @@
+void attendre(int x);

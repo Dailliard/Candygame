@@ -7,6 +7,7 @@
 void test(){
     printf("Test function executed.\n");
 }
+
 int main() {
     SetConsoleOutputCP(CP_UTF8);
     menu();

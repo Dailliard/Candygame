@@ -31,7 +31,7 @@ void rules(void){
         printf("     - Alignement : 3 items identiques horizontalement ou verticalement\n");
         printf("     Figures spéciales :\n");
         printf("         - Alignement de 4 : élimine toute la ligne\n");
-        printf("         - Alignement de 6 : élimine tous les items de la même famille\n");
+        printf("         - Alignement de 5 : élimine tous les items de la même famille\n");
         printf("         - Croix de 9 : élimine ligne x colone\n");
         printf("\nAppuyez sur ESPACE pour revenir au menu principal\n");
     }while(action = getch());
@@ -53,4 +53,3 @@ void menu(void) {
         printf("4. 🔚 Quitter\n");
     }while(action = getch());
 }
-
