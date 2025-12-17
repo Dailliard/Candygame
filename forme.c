@@ -64,8 +64,8 @@ int vertical4(int tab[Y][X]){
 }
 
 int horizontal3(int tab[Y][X]){
-    for(int i=Y-1; i>=0;i--){
-        for(int j=X-1; j>=0;j--){
+    for(int i=0; i<Y;i++){
+        for(int j=2; j<X;i++){
             if(tab[i][j]==tab[i][j-1] && tab[i][j]==tab[i][j-2]){
                 tab[i][j]=0;
                 tab[i][j-1]=0;
@@ -79,8 +79,8 @@ int horizontal3(int tab[Y][X]){
 }
 
 int vertical3(int tab[Y][X]){
-    for(int i=Y-1; i>=0;i--){
-        for(int j=X-1; j>=0;j--){
+    for(int i=2; i<Y;i++){
+        for(int j=0; j<X;j++){
             if(tab[i][j]==tab[i-1][j] && tab[i][j]==tab[i-2][j]){
                 tab[i][j]=0;
                 tab[i-1][j]=0;
@@ -98,10 +98,10 @@ int recherche_formes(int tab[Y][X]){
     int count;
     do{
         count = 0;
-        count += horizontal4(tab);
-        count += vertical4(tab);
-        count += horizontal3(tab);
-        count += vertical3(tab);
+        //count += horizontal4(tab);
+        //count += vertical4(tab);
+        //count += horizontal3(tab);
+        //count += vertical3(tab);
     }while(count >0);
     return 0;
 }
