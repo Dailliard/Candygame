@@ -33,12 +33,60 @@ void replace(int tab[Y][X]){
     add(tab);
 }
 
-int horizontal4(int tab[Y][X]){
-    for(int i=Y-1; i>=0;i--){
-        for(int j=X-1; j>=0;j--){
+int carre(int tab[Y][X]){
+    for(int i=3; i<Y;i++){
+        for(int j=3; j<X;j++){
             if(tab[i][j]==tab[i][j-1] && tab[i][j]==tab[i][j-2] && tab[i][j]==tab[i][j-3]){
-                for(int z=0;z<X;z++){
-                    tab[i][z]=0;
+                if(tab[i][j]==tab[i-1][j] && tab[i][j]==tab[i-2][j] && tab[i][j]==tab[i-3][j]){
+                    if(tab[i][j]==tab[i-3][j-1] && tab[i][j]==tab[i-3][j-2] && tab[i][j]==tab[i-3][j-3]){
+                        if(tab[i][j]==tab[i-1][j-3] && tab[i][j]==tab[i-2][j-3] && tab[i][j]==tab[i-3][j-3]){
+                            for(int z=i-3;z<=i;z++){
+                                for(int a=j-3;a<=j;a++){
+                                    if(tab[z][a]==tab[i][j])tab[z][a]=0;
+                                }
+                            }
+                            replace(tab);
+                            return 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return 0;
+}
+
+int croix(int tab[Y][X]){
+    for(int i=2; i<Y-2;i++){
+        for(int j=2; j<X-2;j++){
+            if(tab[i][j]==tab[i][j-1] && tab[i][j]==tab[i][j-2] && tab[i][j]==tab[i][j+1] && tab[i][j]==tab[i][j+2]){
+                if(tab[i][j]==tab[i-1][j] && tab[i][j]==tab[i-2][j] && tab[i][j]==tab[i+1][j] && tab[i][j]==tab[i+2][j]){
+                    for(int z=0;z<X;z++){
+                        if(tab[i][z]==tab[i][j])tab[i][z]=0;
+                    }
+                    for(int z=0;z<Y;z++){
+                        if(tab[i][z]==tab[i][j])tab[z][j]=0;
+                    }
+                    replace(tab);
+                    return 1;
+                }
+            } 
+        }
+    }
+    return 0;
+}
+
+int horizontal6(int tab[Y][X]){
+    for(int i=0; i<Y;i++){
+        for(int j=5; j<X;j++){
+            if(tab[i][j]==tab[i][j-1] && tab[i][j]==tab[i][j-2] && tab[i][j]==tab[i][j-3] && tab[i][j]==tab[i][j-4] && tab[i][j]==tab[i][j-5]){
+                int temp = tab[i][j];
+                for(int z=0;z<Y;z++){
+                    for(int a=0;a<X;a++){
+                        if(tab[z][a]==temp){
+                            tab[z][a]=0;
+                        }
+                    }
                 }
                 replace(tab);
                 return 1;
@@ -48,13 +96,18 @@ int horizontal4(int tab[Y][X]){
     return 0;
 }
 
-int vertical4(int tab[Y][X]){
-    for(int i=Y-1; i>=0;i--){
-        for(int j=X-1; j>=0;j--){
-            if(tab[i][j]==tab[i-1][j] && tab[i][j]==tab[i-2][j]){
-                tab[i][j]=0;
-                tab[i-1][j]=0;
-                tab[i-2][j]=0;
+int vertical6(int tab[Y][X]){
+    for(int i=5; i<Y;i++){
+        for(int j=0; j<X;j++){
+            if(tab[i][j]==tab[i-1][j] && tab[i][j]==tab[i-2][j] && tab[i][j]==tab[i-3][j] && tab[i][j]==tab[i-4][j] && tab[i][j]==tab[i-5][j]){
+                int temp = tab[i][j];
+                for(int z=0;z<Y;z++){
+                    for(int a=0;a<X;a++){
+                        if(tab[z][a]==temp){
+                            tab[z][a]=0;
+                        }
+                    }
+                }
                 replace(tab);
                 return 1;
             }
@@ -63,13 +116,14 @@ int vertical4(int tab[Y][X]){
     return 0;
 }
 
-int horizontal3(int tab[Y][X]){
+int horizontal4(int tab[Y][X]){
     for(int i=0; i<Y;i++){
-        for(int j=2; j<X;i++){
-            if(tab[i][j]==tab[i][j-1] && tab[i][j]==tab[i][j-2]){
+        for(int j=3; j<X;j++){
+            if(tab[i][j]==tab[i][j-1] && tab[i][j]==tab[i][j-2] && tab[i][j]==tab[i][j-3]){
                 tab[i][j]=0;
                 tab[i][j-1]=0;
                 tab[i][j-2]=0;
+                tab[i][j-3]=0;
                 replace(tab);
                 return 1;
             }
@@ -78,13 +132,14 @@ int horizontal3(int tab[Y][X]){
     return 0;
 }
 
-int vertical3(int tab[Y][X]){
-    for(int i=2; i<Y;i++){
+int vertical4(int tab[Y][X]){
+    for(int i=3; i<Y;i++){
         for(int j=0; j<X;j++){
-            if(tab[i][j]==tab[i-1][j] && tab[i][j]==tab[i-2][j]){
+            if(tab[i][j]==tab[i-1][j] && tab[i][j]==tab[i-2][j] && tab[i][j]==tab[i-3][j]){
                 tab[i][j]=0;
                 tab[i-1][j]=0;
                 tab[i-2][j]=0;
+                tab[i-3][j]=0;
                 replace(tab);
                 return 1;
             }
@@ -98,10 +153,12 @@ int recherche_formes(int tab[Y][X]){
     int count;
     do{
         count = 0;
-        //count += horizontal4(tab);
-        //count += vertical4(tab);
-        //count += horizontal3(tab);
-        //count += vertical3(tab);
+        count += carre(tab);
+        count += croix(tab);
+        count += horizontal6(tab);
+        count += vertical6(tab);
+        count += horizontal4(tab);
+        count += vertical4(tab);
     }while(count >0);
     return 0;
 }

@@ -28,10 +28,10 @@ void rules(void){
         printf("🎯 BUT : Remplir les contrats en remplissant les alignements d'items\n");
         printf("📃 Contrats : Eliminer X items de chaques types demandés\n");
         printf("🧩 Figures :\n");
-        printf("     - Alignement : 3 items identiques horizontalement ou verticalement\n");
+        printf("     - Alignement : 4 items identiques horizontalement ou verticalement\n");
         printf("     Figures spéciales :\n");
         printf("         - Alignement de 4 : élimine toute la ligne\n");
-        printf("         - Alignement de 5 : élimine tous les items de la même famille\n");
+        printf("         - Alignement de 6 : élimine tous les items de la même famille\n");
         printf("         - Croix de 9 : élimine ligne x colone\n");
         printf("\nAppuyez sur ESPACE pour revenir au menu principal\n");
     }while(action = getch());

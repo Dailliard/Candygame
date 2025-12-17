@@ -7,7 +7,6 @@
 #include "forme.h"
 
 int takecoo(int *y, int *x){
-    //system("cls");
     printf("Entrez les coordonnées y et x de l'objet à sélectionner :\n");
     scanf("%d",&*y);
     scanf("%d",&*x);
@@ -52,9 +51,9 @@ void level1(){
     do{
         direction = takecoo(&y,&x);
         change(tab,y,x,direction);
+        recherche_formes(tab);
         viewmap(tab);
         coups--;
-        recherche_formes(tab);
     }while(coups!=0);
 }
 
