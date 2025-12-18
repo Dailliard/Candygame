@@ -7,8 +7,10 @@
 #include "forme.h"
 
 int takecoo(int *y, int *x, Donnees *data){
-    printf("\n=== Score : %d ===\n", data->score);
-    printf("Entrez les coordonnees y et x de l'objet a selectionner :\n");
+    for(int i=1;i<6;i++){
+        printf("|%d : %d / %d |",i,data->Contrat[i][0],data->Contrat[i][1]);
+    }
+    printf("\nEntrez les coordonnees y et x de l'objet a selectionner :\n");
     scanf("%d", y);
     scanf("%d", x);
     int direction;
@@ -47,6 +49,10 @@ void level1(){
     Donnees data;
     data.level = 1;
     data.score = 0;
+    for(int i=1;i<6;i++){
+        data.Contrat[i][0]=0;
+        data.Contrat[i][1]=10;
+    }
     
     int tab[Y][X];
     createtab(tab, &data);

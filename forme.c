@@ -41,9 +41,14 @@ int carre(int tab[Y][X], Donnees *data){
                 if(tab[i][j]==tab[i-1][j] && tab[i][j]==tab[i-2][j] && tab[i][j]==tab[i-3][j]){
                     if(tab[i][j]==tab[i-3][j-1] && tab[i][j]==tab[i-3][j-2] && tab[i][j]==tab[i-3][j-3]){
                         if(tab[i][j]==tab[i-1][j-3] && tab[i][j]==tab[i-2][j-3] && tab[i][j]==tab[i-3][j-3]){
+                            int temp = tab[i][j];
                             for(int z = i-3; z <= i; z++){
                                 for(int a = j-3; a <= j; a++){
-                                    if(tab[z][a] == tab[i][j]) tab[z][a] = 0;
+                                    if(tab[z][a] == temp){
+                                        data->Contrat[temp][0]++;
+                                        tab[z][a] = 0;
+                                    }
+                                    
                                 }
                             }
                             replace(tab, data);
@@ -62,11 +67,20 @@ int croix(int tab[Y][X], Donnees *data){
         for(int j = 2; j < X-2; j++){
             if(tab[i][j]==tab[i][j-1] && tab[i][j]==tab[i][j-2] && tab[i][j]==tab[i][j+1] && tab[i][j]==tab[i][j+2]){
                 if(tab[i][j]==tab[i-1][j] && tab[i][j]==tab[i-2][j] && tab[i][j]==tab[i+1][j] && tab[i][j]==tab[i+2][j]){
+                    int temp = tab[i][j];
                     for(int z = 0; z < X; z++){
-                        if(tab[i][z] == tab[i][j]) tab[i][z] = 0;
+                        if(tab[i][z] == temp){
+                            tab[i][z] = 0;
+                            data->Contrat[temp][0]++;
+                        }
+                        
                     }
                     for(int z = 0; z < Y; z++){
-                        if(tab[z][j] == tab[i][j]) tab[z][j] = 0;
+                        if(tab[z][j] == temp){
+                            tab[z][j] = 0;
+                            data->Contrat[temp][0]++;
+                        }
+                        
                     }
                     replace(tab, data);
                     return 1;
@@ -85,7 +99,9 @@ int horizontal6(int tab[Y][X], Donnees *data){
                 for(int z = 0; z < Y; z++){
                     for(int a = 0; a < X; a++){
                         if(tab[z][a] == temp){
+                            data->Contrat[temp][0]++;
                             tab[z][a] = 0;
+                            
                         }
                     }
                 }
@@ -106,6 +122,7 @@ int vertical6(int tab[Y][X], Donnees *data){
                     for(int a = 0; a < X; a++){
                         if(tab[z][a] == temp){
                             tab[z][a] = 0;
+                            data->Contrat[temp][0]++;
                         }
                     }
                 }
@@ -121,6 +138,7 @@ int horizontal4(int tab[Y][X], Donnees *data){
     for(int i = 0; i < Y; i++){
         for(int j = 3; j < X; j++){
             if(tab[i][j]==tab[i][j-1] && tab[i][j]==tab[i][j-2] && tab[i][j]==tab[i][j-3]){
+                data->Contrat[tab[i][j]][0]+=4;
                 tab[i][j] = 0;
                 tab[i][j-1] = 0;
                 tab[i][j-2] = 0;
@@ -137,6 +155,7 @@ int vertical4(int tab[Y][X], Donnees *data){
     for(int i = 3; i < Y; i++){
         for(int j = 0; j < X; j++){
             if(tab[i][j]==tab[i-1][j] && tab[i][j]==tab[i-2][j] && tab[i][j]==tab[i-3][j]){
+                data->Contrat[tab[i][j]][0]+=4;
                 tab[i][j] = 0;
                 tab[i-1][j] = 0;
                 tab[i-2][j] = 0;
