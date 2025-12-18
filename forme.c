@@ -121,6 +121,58 @@ int croix(int tab[Y][X], Donnees *data){
     return 0;
 }
 
+int horizontal8(int tab[Y][X], Donnees *data){
+    for(int i = 0; i < Y; i++){
+        for(int j = 7; j < X; j++){
+            if(tab[i][j]==tab[i][j-1] &&
+                 tab[i][j]==tab[i][j-2] &&
+                  tab[i][j]==tab[i][j-3] &&
+                   tab[i][j]==tab[i][j-4] &&
+                    tab[i][j]==tab[i][j-5] &&
+                     tab[i][j]==tab[i][j-6] &&
+                      tab[i][j]==tab[i][j-7]){
+
+                int temp = tab[i][j];
+                for(int a = 0; a < X; a++){
+                    if(tab[i][a] == temp){
+                         data->Contrat[temp][0]++;
+                         tab[i][a] = 0; 
+                    }
+                }
+                replace(tab);
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+int vertical8(int tab[Y][X], Donnees *data){
+    for(int i = 7; i < Y; i++){
+        for(int j = 0; j < X; j++){
+            if(tab[i][j]==tab[i-1][j] &&
+                 tab[i][j]==tab[i-2][j] &&
+                  tab[i][j]==tab[i-3][j] &&
+                   tab[i][j]==tab[i-4][j] &&
+                    tab[i][j]==tab[i-5][j] &&
+                     tab[i][j]==tab[i-6][j] &&
+                      tab[i][j]==tab[i-7][j]){
+
+                int temp = tab[i][j];
+                for(int z = 0; z < Y; z++){
+                    if(tab[z][j] == temp){
+                        tab[z][j] = 0;
+                        data->Contrat[temp][0]++;
+                    }
+                }
+                replace(tab);
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
 int horizontal6(int tab[Y][X], Donnees *data){
     for(int i = 0; i < Y; i++){
         for(int j = 5; j < X; j++){
