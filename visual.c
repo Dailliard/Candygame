@@ -8,16 +8,15 @@
 #include "const.h"
 #include "affichage_console.h"
 
-void viewmap(int tab[Y][X]){
-    int a=3;
-    int b=2;
+void viewmap(int tab[Y][X], int a, int b, int sel){
     const char* emoji[] = {" ", "🐶", "😺", "🐹", "🐴", "🐤"};
     system("cls");
     text_color(0);
     for(int y = 0; y < Y; y++){
         for(int x =  0; x < X; x++){
             if(a==y && b==x){
-                text_color(4);
+                if(sel==0)text_color(4);
+                else text_color(3);
                 printf("|%s|", emoji[tab[y][x]]);
             }
             else {
