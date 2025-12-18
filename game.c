@@ -66,10 +66,10 @@ void partie(Donnees *data){
             if (action == 'q' && x!=0) x--;
             if (action == 'd' && x!=X-1) x++;
         }else{
-            if (action == 'z' && y!=0){change(tab,y,x,1);sel=0;y--;}
-            if (action == 's' && y!=Y-1){change(tab,y,x,2);sel=0;y++;}
-            if (action == 'q' && x!=0){change(tab,y,x,3);sel=0;x--;}
-            if (action == 'd' && x!=X-1){change(tab,y,x,4);sel=0;x++;}
+            if (action == 'z' && y!=0){change(tab,y,x,1);sel=0;y--;data->coups--;}
+            if (action == 's' && y!=Y-1){change(tab,y,x,2);sel=0;y++;data->coups--;}
+            if (action == 'q' && x!=0){change(tab,y,x,3);sel=0;x--;data->coups--;}
+            if (action == 'd' && x!=X-1){change(tab,y,x,4);sel=0;x++;data->coups--;}
         }
         if (action == ' '){
             if(sel == 0)sel=1;
@@ -78,7 +78,7 @@ void partie(Donnees *data){
         if (action == 'p')break;
         recherche_formes(tab, data);
         viewmap(tab, y, x, sel);
-        data->coups--;
+        
     }while(action = getch());
 }
 
