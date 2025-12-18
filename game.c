@@ -5,6 +5,7 @@
 #include "visual.h"
 #include "create.h"
 #include "forme.h"
+#include "chrono.h"
 
 int takecoo(int *y, int *x, Donnees *data){
     for(int i=1;i<6;i++){
@@ -46,6 +47,7 @@ void change(int tab[Y][X], int y, int x, int direction){
     }
 }
 
+
 void partie(Donnees *data){
     int tab[Y][X];
     createtab(tab, data);
@@ -67,7 +69,9 @@ void level1(){
     Donnees data;
     data.level = 1;
     data.coups = 10;
+    start_timer(120);
     for(int i=1;i<6;i++){
+        show_time();
         data.Contrat[i][1]=10;
     }
     partie(&data);

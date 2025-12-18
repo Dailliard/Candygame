@@ -11,3 +11,4 @@ typedef struct {
 } Donnees;
 
 #endif
+static time_t end_time;
