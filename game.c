@@ -134,7 +134,28 @@ void level3(char pseudo[21]){
 }
 
 void chargelevel(char pseudo[21]){
-    level2(pseudo);
+    FILE *f = fopen(ENREGISTREMENT, "r");
+    char temps[21];
+    int temp1,temp2;
+    char ligne[256];
+    while(fgets(ligne,sizeof(ligne), f)!=NULL){
+        if(sscanf(ligne, "%[^;];%d;%d",temps,&temp1,&temp2)==3){
+            if(strcmp(temps,pseudo) == 0){
+                switch(temp1){
+                    case 1:
+                        level1(pseudo);
+                        break;
+                    case 2:
+                        level2(pseudo);
+                        break;
+                    case 3:
+                        level3(pseudo);
+                        break;
+                }
+                break;
+            }
+        }
+    }
 }
 
 void sauvegarder(Donnees *data){
