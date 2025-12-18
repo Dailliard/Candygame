@@ -11,7 +11,21 @@
 #include "chrono.h"
 
 void issues(Donnees *data){
-
+    if(data->etat==5){
+        if(data->level==3){
+            wingame(data);
+        }else{
+            data->level++;
+            winlevel(data);
+        }
+    }else{
+        if(data->vies==1){
+            loosegame(data);
+        }else{
+            data->vies--;
+            looselevel(data);
+        }
+    }
 }
 
 void change(int tab[Y][X], int y, int x, int direction){
@@ -88,7 +102,7 @@ void level1(char pseudo[21]){
     start_timer(120);
     for(int i=1;i<6;i++){
         show_time();
-        data.Contrat[i][1]=50;
+        data.Contrat[i][1]=4;
     }
     partie(&data);
 }
@@ -119,11 +133,64 @@ void level3(char pseudo[21]){
     partie(&data);
 }
 
-void takepseudo(char pseudo[21]){
+void chargelevel(char pseudo[21]){
+    level2(pseudo);
+}
+
+void sauvegarder(Donnees *data){
+    FILE *f = fopen(ENREGISTREMENT, "r");
+    FILE *temp = fopen("temp.txt", "w");
+    
+    char ligne[256];
+    
+    while (fgets(ligne, sizeof(ligne), f) != NULL) {
+        char pseudo_lu[21];
+        int vie, level;
+        
+        if (sscanf(ligne, "%[^;];%d;%d", pseudo_lu, &vie, &level) == 3) {
+            if (strcmp(pseudo_lu, data->pseudo) == 0) {
+                fprintf(temp, "%s;%d;%d\n", data->pseudo,data->vies, data->level);
+            } else {
+                fprintf(temp, "%s", ligne);
+            }
+        }
+    }
+    fclose(f);
+    fclose(temp);
+    remove(ENREGISTREMENT);
+    rename("temp.txt", ENREGISTREMENT);
+}
+
+void supprimer(Donnees *data){
+    FILE *f = fopen(ENREGISTREMENT, "r");
+    FILE *temp = fopen("temp.txt", "w");
+    
+    char ligne[256];
+    
+    while (fgets(ligne, sizeof(ligne), f) != NULL) {
+        char pseudo_lu[21];
+        int vie, level;
+        
+        if (sscanf(ligne, "%[^;];%d;%d", pseudo_lu, &vie, &level) == 3) {
+            if (strcmp(pseudo_lu, data->pseudo) == 0);
+            else {
+                fprintf(temp, "%s", ligne);
+            }
+        }
+    }
+    fclose(f);
+    fclose(temp);
+    remove(ENREGISTREMENT);
+    rename("temp.txt", ENREGISTREMENT);
+}
+
+void new_game(){
+    char pseudo[21];
     FILE *f = fopen(ENREGISTREMENT, "r");
     int verif=0;
+    printf("Entrez votre pseudo : ");
     do{
-        printf("Entrez votre pseudo");
+        
         fgets(pseudo,21,stdin);
         pseudo[strlen(pseudo)-1]='\0';
         if(f==NULL)verif=0;
@@ -135,6 +202,7 @@ void takepseudo(char pseudo[21]){
                 if(sscanf(ligne, "%[^;];%d;%d",temps,&temp1,&temp2)==3){
                     if(strcmp(temps,pseudo) == 0){
                         verif=1;
+                        system("cls");
                         printf("Pseudo déja pris choisissez-en un autre !\n");
                         break;
                     }
@@ -144,10 +212,8 @@ void takepseudo(char pseudo[21]){
         }
     }while(verif==1);
     fclose(f);
-}
-
-void new_game(){
-    char pseudo[21];
-    takepseudo(pseudo);
+    FILE *d = fopen(ENREGISTREMENT, "a");
+    fprintf(d, "%s;%d;%d\n", pseudo, 3, 1);
+    fclose(d);
     level1(pseudo);
 }
