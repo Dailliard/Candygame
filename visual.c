@@ -144,7 +144,6 @@ void affichage_partie(int tab[Y][X], Donnees *data,int y, int x, int sel, int se
 	system("cls");
     gotoxy(0, 0);
 	printf("Niveau %d \n", data->level);
-    data->vies=3;
     int vies_pos = (CONSOLE_WIDTH / 2) - 6;
     gotoxy(vies_pos, 0);
     printf("Vies: ");

@@ -94,42 +94,48 @@ void partie(Donnees *data){
     }while(action = getch());
 }
 
-void level1(char pseudo[21]){
+void level1(char pseudo[21],int vie){
     Donnees data;
     data.level = 1;
-    data.coups = 50;
+    data.coups = 30;
+    data.vies = vie;
     strcpy(data.pseudo,pseudo);
     start_timer(120);
-    for(int i=1;i<6;i++){
-        show_time();
-        data.Contrat[i][1]=4;
-    }
+    data.Contrat[1][1]=10;
+    data.Contrat[2][1]=20;
+    data.Contrat[3][1]=10;
+    data.Contrat[4][1]=15;
+    data.Contrat[5][1]=20;
     partie(&data);
 }
 
-void level2(char pseudo[21]){
+void level2(char pseudo[21],int vie){
     Donnees data;
     data.level = 2;
-    data.coups = 75;
+    data.coups = 45;
+    data.vies = vie;
     strcpy(data.pseudo,pseudo);
     start_timer(120);
-    for(int i=1;i<6;i++){
-        show_time();
-        data.Contrat[i][1]=100;
-    }
+    data.Contrat[1][1]=50;
+    data.Contrat[2][1]=30;
+    data.Contrat[3][1]=25;
+    data.Contrat[4][1]=60;
+    data.Contrat[5][1]=20;
     partie(&data);
 }
 
-void level3(char pseudo[21]){
+void level3(char pseudo[21],int vie){
     Donnees data;
     data.level = 3;
-    data.coups = 100;
+    data.coups = 75;
+    data.vies = vie;
     strcpy(data.pseudo,pseudo);
     start_timer(120);
-    for(int i=1;i<6;i++){
-        show_time();
-        data.Contrat[i][1]=150;
-    }
+    data.Contrat[1][1]=100;
+    data.Contrat[2][1]=50;
+    data.Contrat[3][1]=100;
+    data.Contrat[4][1]=50;
+    data.Contrat[5][1]=100;
     partie(&data);
 }
 
@@ -141,15 +147,15 @@ void chargelevel(char pseudo[21]){
     while(fgets(ligne,sizeof(ligne), f)!=NULL){
         if(sscanf(ligne, "%[^;];%d;%d",temps,&temp1,&temp2)==3){
             if(strcmp(temps,pseudo) == 0){
-                switch(temp1){
+                switch(temp2){
                     case 1:
-                        level1(pseudo);
+                        level1(pseudo,temp1);
                         break;
                     case 2:
-                        level2(pseudo);
+                        level2(pseudo,temp1);
                         break;
                     case 3:
-                        level3(pseudo);
+                        level3(pseudo,temp1);
                         break;
                 }
                 break;
@@ -237,7 +243,7 @@ void new_game(){
     FILE *d = fopen(ENREGISTREMENT, "a");
     fprintf(d, "%s;%d;%d\n", pseudo, 3, 1);
     fclose(d);
-    level1(pseudo);
+    level1(pseudo,3);
 }
 
 void charge_game(){
@@ -252,7 +258,6 @@ void charge_game(){
         return;
     }
     int verif=0;
-    
     do{
         system("cls");
         printf("Entrez votre pseudo : ");
@@ -271,7 +276,7 @@ void charge_game(){
             }
         }
         if(verif==0){
-            char action;
+            char action='0';
             do{
                 if(action=='1'){
                     verif=0;
