@@ -6,6 +6,7 @@
 #include "visual.h"
 #include "game.h"
 #include "const.h"
+#include "affichage_console.h"
 
 
 
@@ -13,10 +14,12 @@ void viewmap(int tab[Y][X]){
     system("cls");
     for(int y = 0; y < Y; y++){
         for(int x =  0; x < X; x++){
+            text_color(tab[y][x]);
             printf("|%d|",tab[y][x]);
         }
         printf("\n");
     }
+    text_color(15);
 }
 
 void rules(void){

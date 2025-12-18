@@ -28,10 +28,9 @@ void descendre(int tab[Y][X]){
     }
 }
 
-void replace(int tab[Y][X], Donnees *data){
+void replace(int tab[Y][X]){
     descendre(tab);
     add(tab);
-    data->score++;
 }
 
 int carre(int tab[Y][X], Donnees *data){
@@ -51,7 +50,7 @@ int carre(int tab[Y][X], Donnees *data){
                                     
                                 }
                             }
-                            replace(tab, data);
+                            replace(tab);
                             return 1;
                         }
                     }
@@ -82,7 +81,7 @@ int croix(int tab[Y][X], Donnees *data){
                         }
                         
                     }
-                    replace(tab, data);
+                    replace(tab);
                     return 1;
                 }
             } 
@@ -105,7 +104,7 @@ int horizontal6(int tab[Y][X], Donnees *data){
                         }
                     }
                 }
-                replace(tab, data);
+                replace(tab);
                 return 1;
             }
         }
@@ -126,7 +125,7 @@ int vertical6(int tab[Y][X], Donnees *data){
                         }
                     }
                 }
-                replace(tab, data);
+                replace(tab);
                 return 1;
             }
         }
@@ -143,7 +142,7 @@ int horizontal4(int tab[Y][X], Donnees *data){
                 tab[i][j-1] = 0;
                 tab[i][j-2] = 0;
                 tab[i][j-3] = 0;
-                replace(tab, data);
+                replace(tab);
                 return 1;
             }
         }
@@ -160,7 +159,7 @@ int vertical4(int tab[Y][X], Donnees *data){
                 tab[i-1][j] = 0;
                 tab[i-2][j] = 0;
                 tab[i-3][j] = 0;
-                replace(tab, data);
+                replace(tab);
                 return 1;
             }
         }

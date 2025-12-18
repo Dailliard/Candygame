@@ -10,6 +10,7 @@ int takecoo(int *y, int *x, Donnees *data){
     for(int i=1;i<6;i++){
         printf("|%d : %d / %d |",i,data->Contrat[i][0],data->Contrat[i][1]);
     }
+    printf("\nCoups restants : %d",data->coups);
     printf("\nEntrez les coordonnees y et x de l'objet a selectionner :\n");
     scanf("%d", y);
     scanf("%d", x);
@@ -45,29 +46,31 @@ void change(int tab[Y][X], int y, int x, int direction){
     }
 }
 
+void partie(Donnees *data){
+    int tab[Y][X];
+    createtab(tab, data);
+    viewmap(tab);
+    for(int i=1;i<6;i++){
+        data->Contrat[i][0]=0;
+    }
+    int x, y, direction;
+    do{
+        direction = takecoo(&y, &x, data);
+        change(tab, y, x, direction);
+        recherche_formes(tab, data);
+        viewmap(tab);
+        data->coups--;
+    }while(data->coups != 0);
+}
+
 void level1(){
     Donnees data;
     data.level = 1;
-    data.score = 0;
+    data.coups = 10;
     for(int i=1;i<6;i++){
-        data.Contrat[i][0]=0;
         data.Contrat[i][1]=10;
     }
-    
-    int tab[Y][X];
-    createtab(tab, &data);
-    viewmap(tab);
-    
-    int coups = 10;
-    int x, y, direction;
-    
-    do{
-        direction = takecoo(&y, &x, &data);
-        change(tab, y, x, direction);
-        recherche_formes(tab, &data);
-        viewmap(tab);
-        coups--;
-    }while(coups != 0);
+    partie(&data);
 }
 
 void new_game(){
