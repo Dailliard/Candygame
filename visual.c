@@ -12,20 +12,22 @@
 #define CONSOLE_WIDTH 80
 
 void affichage_partie(int tab[Y][X], Donnees *data, int sec_r){
+    do{
 	system("cls");
     gotoxy(0, 0);
 	printf("Niveau %d \n", data->level);
-
+    data->vies=3;
     int vies = (CONSOLE_WIDTH / 2) - 6;
     gotoxy(vies, 0);
     printf("Vies: ");
     for(int i = 0; i < 3; i++){
         if(i < data->vies){
-            printf("❤️ ");
+            printf("❤️  ");
         }else{
             printf("🖤 ");
         }
     }
+    }while(getch()!='p');
 }
 
 void viewmap(int tab[Y][X], int a, int b, int sel){
@@ -72,7 +74,7 @@ void menu() {
     do{
         if(action == '4')break;
         else if(action == '3') rules();
-        else if(action == '2'){ /**load_game();**/ break;}
+        else if(action == '2'){ break;}
         else if(action == '1'){ new_game(); break;}
         system("cls");
         int choice;
