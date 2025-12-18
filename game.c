@@ -149,12 +149,15 @@ void chargelevel(char pseudo[21]){
             if(strcmp(temps,pseudo) == 0){
                 switch(temp2){
                     case 1:
+                        fclose(f);
                         level1(pseudo,temp1);
                         break;
                     case 2:
+                        fclose(f);
                         level2(pseudo,temp1);
                         break;
                     case 3:
+                        fclose(f);
                         level3(pseudo,temp1);
                         break;
                 }

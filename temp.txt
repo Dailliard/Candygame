@@ -1,6 +1,0 @@
-test0;2;1
-l;3;1
-testmac;2;1
-testmac;2;1
-t;1;1
-t;1;1
