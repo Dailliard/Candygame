@@ -120,7 +120,7 @@ void loosegame(Donnees *data){
 }
 
 void viewmap(int tab[Y][X], int a, int b, int sel){
-    const char* emoji[] = {" ", "🐶", "😺", "🐮", "🐴", "🐔"};
+    const char* emoji[] = {" ", "🐶", "😺", "🐮", "🐴", "🐔", "🐦‍🔥"};
     text_color(0);
     for(int y = 0; y < Y; y++){
         gotoxy(25, y+3);

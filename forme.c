@@ -139,6 +139,7 @@ int horizontal8(int tab[Y][X], Donnees *data){
                          tab[i][a] = 0; 
                     }
                 }
+                tab[i][j]=6;
                 replace(tab);
                 return 1;
             }
@@ -165,6 +166,7 @@ int vertical8(int tab[Y][X], Donnees *data){
                         data->Contrat[temp][0]++;
                     }
                 }
+                tab[i][j]=6;
                 replace(tab);
                 return 1;
             }
@@ -260,6 +262,11 @@ int recherche_formes(int tab[Y][X], Donnees *data){
     int count;
     do{
         count = 0;
+        if(data->level>2){
+            count += bonuslife(tab, data);
+            count += horizontal8(tab, data);
+            count += vertical8(tab, data);
+        }
         count += carre(tab, data);
         count += croix(tab, data);
         count += horizontal6(tab, data);
