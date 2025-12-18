@@ -13,7 +13,7 @@ void viewmap(int tab[Y][X]){
     for(int y = 0; y < Y; y++){
         for(int x =  0; x < X; x++){
             text_color(tab[y][x]);
-            printf("|%d|",tab[y][x]);
+            printf("|%s|", emoji[tab[y][x]]);
         }
         printf("\n");
     }
