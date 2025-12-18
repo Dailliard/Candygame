@@ -6,8 +6,10 @@
 #define Y 15
 #define X 15
 #define CONSOLE_WIDTH 100
+#define ENREGISTREMENT "Sauvegarde.txt"
 
 typedef struct {
+    char pseudo[21];
     int level;
     int vies;
     int Contrat[6][2];
