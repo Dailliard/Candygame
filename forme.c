@@ -20,9 +20,20 @@ void descendre(int tab[Y][X]){
     for(int y = Y-1; y > 0; y--){
         for(int x = X-1; x >= 0; x--){
             if(tab[y][x] == 0){
-                int temp = tab[y][x];
-                tab[y][x] = tab[y-1][x];
-                tab[y-1][x] = temp;
+                if(tab[y-1][x]==0){
+                    for(int i=y;i>=0;i--){
+                        if(tab[i][x]!=0){
+                           int temp = tab[y][x];
+                            tab[y][x] = tab[i][x];
+                            tab[i][x] = temp;
+                            break;
+                        }
+                    }
+                }else{
+                    int temp = tab[y][x];
+                    tab[y][x] = tab[y-1][x];
+                    tab[y-1][x] = temp;
+                }
             }
         }
     }
