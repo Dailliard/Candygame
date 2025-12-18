@@ -60,7 +60,7 @@ void partie(Donnees *data){
             if(sel == 0)sel=1;
             else sel=0;
         }
-        if (data->coups==0)break;
+        if (data->coups==0 || action == 'p')break;
         recherche_formes(tab, data);
         viewmap(tab, y, x, sel);
         
