@@ -9,14 +9,55 @@
 #include "affichage_console.h"
 #include "chrono.h"
 
-#define CONSOLE_WIDTH 80
+void winlevel(Donnees *data){
+    //Mettre Bravo Pseudo vous avez reussi le level n°? avec ? vie restantes 
+    //Que voulez vous faire ?
+    //Save and quit
+    //Faire le prochain niveau
+}
 
-void affichage_partie(int tab[Y][X], Donnees *data, int sec_r){
-    do{
+void wingame(Donnees *data){
+    //Mettre bravo pseudo vous avez fini le jeu avec ? vies restantes 
+    //Appuyer sur espace pour retourner au menu
+}
+
+void looselevel(Donnees *data){
+    //Mettre Dommage Pseudo vous échouer le level n°? il vous reste ? vies
+    //Que voulez vous faire ?
+    //Save and quit
+    //Retenter le niveau
+}
+
+void loosegame(Donnees *data){
+    //Mettre Game Over pseudo
+    //Appuyer sur espace pour retourner au menu
+}
+
+void viewmap(int tab[Y][X], int a, int b, int sel){
+    const char* emoji[] = {" ", "🐶", "😺", "🐮", "🐴", "🐔"};
+    text_color(0);
+    for(int y = 0; y < Y; y++){
+        gotoxy(25, y+3);
+        for(int x =  0; x < X; x++){
+            if(a==y && b==x){
+                if(sel==0)text_color(4);
+                else text_color(2);
+                printf("|%s|", emoji[tab[y][x]]);
+            }
+            else {
+                text_color(0);
+                printf(" %s ", emoji[tab[y][x]]);
+            }
+        }
+    }
+    text_color(15);
+    printf("\n");
+}
+
+void affichage_partie(int tab[Y][X], Donnees *data,int y, int x, int sel, int sec_r){
 	system("cls");
     gotoxy(0, 0);
 	printf("Niveau %d \n", data->level);
-
     data->vies=3;
     int vies_pos = (CONSOLE_WIDTH / 2) - 6;
     gotoxy(vies_pos, 0);
@@ -28,46 +69,21 @@ void affichage_partie(int tab[Y][X], Donnees *data, int sec_r){
             printf("🖤 ");
         }
     }
-
     int time_pos = CONSOLE_WIDTH - 14;
     gotoxy(time_pos, 0);
     printf("Temps: %d", sec_r);
 
     gotoxy(0, 2);
     printf("Coups restants: %d\n", data->coups);
-
-    gotoxy(0, 8);
+    gotoxy(0, 5);
     printf("Contrats:\n");
     const char* emoji_contrat[] = {"🐶", "😺", "🐮", "🐴", "🐔"};
     for(int i = 0; i < 5; i++){
-        printf("- %s : %d/%d\n", emoji_contrat[i], data->Contrat[i][0], data->Contrat[i][1]);
+        if(data->Contrat[i+1][0]>=data->Contrat[i+1][1])text_color(2);
+        printf("- %s : %d/%d\n", emoji_contrat[i], data->Contrat[i+1][0], data->Contrat[i+1][1]);
+        text_color(15);
     }
-
-    gotoxy(25, 5);
-    viewmap(tab, -1, -1, 0);
-
-    }while(getch()!='p');
-}
-
-void viewmap(int tab[Y][X], int a, int b, int sel){
-    const char* emoji[] = {" ", "🐶", "😺", "🐮", "🐴", "🐔"};
-    system("cls");
-    text_color(0);
-    for(int y = 0; y < Y; y++){
-        for(int x =  0; x < X; x++){
-            if(a==y && b==x){
-                if(sel==0)text_color(4);
-                else text_color(3);
-                printf("|%s|", emoji[tab[y][x]]);
-            }
-            else {
-                text_color(0);
-                printf("|%s|", emoji[tab[y][x]]);
-            }
-        }
-        printf("\n");
-    }
-    text_color(15);
+    viewmap(tab, y, x, sel);
 }
 
 void rules(void){

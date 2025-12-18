@@ -8,6 +8,10 @@
 #include "forme.h"
 #include "chrono.h"
 
+void issues(Donnees *data){
+
+}
+
 void change(int tab[Y][X], int y, int x, int direction){
     int temp;
     switch(direction){
@@ -38,7 +42,7 @@ void partie(Donnees *data){
     int tab[Y][X];
     int sel=0;
     createtab(tab, data);
-    viewmap(tab,0,0,sel);
+    affichage_partie(tab, data, 0, 0, sel, 0);
     for(int i=1;i<6;i++){
         data->Contrat[i][0]=0;
     }
@@ -60,22 +64,28 @@ void partie(Donnees *data){
             if(sel == 0)sel=1;
             else sel=0;
         }
-        if(action == 'g')affichage_partie(tab,data,sel);
-        if (data->coups==0 || action == 'p')break;
-        recherche_formes(tab, data);
-        viewmap(tab, y, x, sel);
         
+        recherche_formes(tab, data);
+        affichage_partie(tab, data, y, x, sel, 0);
+        data->etat=0;
+        for(int i=0;i<5;i++){
+            if(data->Contrat[i+1][0]>=data->Contrat[i+1][1])data->etat++;
+        }
+        if (data->coups==0 || action == 'p' || data->etat == 5){
+            issues(data);
+            break;
+        }
     }while(action = getch());
 }
 
 void level1(){
     Donnees data;
     data.level = 1;
-    data.coups = 10;
+    data.coups = 90;
     start_timer(120);
     for(int i=1;i<6;i++){
         show_time();
-        data.Contrat[i][1]=10;
+        data.Contrat[i][1]=5;
     }
     partie(&data);
 }
