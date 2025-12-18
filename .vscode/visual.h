@@ -3,7 +3,7 @@
 
 #include "const.h"
 
-void viewmap(int tab[Y][X]);
+void viewmap(int tab[Y][X], Donnees *data);
 void menu(void);
 
 #endif

@@ -50,7 +50,7 @@ void level1(){
     
     int tab[Y][X];
     createtab(tab, &data);
-    viewmap(tab);
+    viewmap(tab, &data);
     
     int coups = 10;
     int x, y, direction;
@@ -59,7 +59,7 @@ void level1(){
         direction = takecoo(&y, &x, &data);
         change(tab, y, x, direction);
         recherche_formes(tab, &data);
-        viewmap(tab);
+        viewmap(tab, &data);
         coups--;
     }while(coups != 0);
 }
