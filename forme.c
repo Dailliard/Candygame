@@ -47,10 +47,22 @@ void replace(int tab[Y][X]){
 int carre(int tab[Y][X], Donnees *data){
     for(int i = 3; i < Y; i++){
         for(int j = 3; j < X; j++){
-            if(tab[i][j]==tab[i][j-1] && tab[i][j]==tab[i][j-2] && tab[i][j]==tab[i][j-3]){
-                if(tab[i][j]==tab[i-1][j] && tab[i][j]==tab[i-2][j] && tab[i][j]==tab[i-3][j]){
-                    if(tab[i][j]==tab[i-3][j-1] && tab[i][j]==tab[i-3][j-2] && tab[i][j]==tab[i-3][j-3]){
-                        if(tab[i][j]==tab[i-1][j-3] && tab[i][j]==tab[i-2][j-3] && tab[i][j]==tab[i-3][j-3]){
+            if(tab[i][j]==tab[i][j-1] &&
+                 tab[i][j]==tab[i][j-2] &&
+                  tab[i][j]==tab[i][j-3]){
+
+                if(tab[i][j]==tab[i-1][j] &&
+                     tab[i][j]==tab[i-2][j] &&
+                      tab[i][j]==tab[i-3][j]){
+
+                    if(tab[i][j]==tab[i-3][j-1] &&
+                         tab[i][j]==tab[i-3][j-2] &&
+                          tab[i][j]==tab[i-3][j-3]){
+
+                        if(tab[i][j]==tab[i-1][j-3] &&
+                             tab[i][j]==tab[i-2][j-3] &&
+                              tab[i][j]==tab[i-3][j-3]){
+                            
                             int temp = tab[i][j];
                             for(int z = i-3; z <= i; z++){
                                 for(int a = j-3; a <= j; a++){
@@ -75,8 +87,16 @@ int carre(int tab[Y][X], Donnees *data){
 int croix(int tab[Y][X], Donnees *data){
     for(int i = 2; i < Y-2; i++){
         for(int j = 2; j < X-2; j++){
-            if(tab[i][j]==tab[i][j-1] && tab[i][j]==tab[i][j-2] && tab[i][j]==tab[i][j+1] && tab[i][j]==tab[i][j+2]){
-                if(tab[i][j]==tab[i-1][j] && tab[i][j]==tab[i-2][j] && tab[i][j]==tab[i+1][j] && tab[i][j]==tab[i+2][j]){
+            if(tab[i][j]==tab[i][j-1] &&
+                 tab[i][j]==tab[i][j-2] &&
+                  tab[i][j]==tab[i][j+1] &&
+                   tab[i][j]==tab[i][j+2]){
+
+                if(tab[i][j]==tab[i-1][j] &&
+                     tab[i][j]==tab[i-2][j] &&
+                      tab[i][j]==tab[i+1][j] &&
+                       tab[i][j]==tab[i+2][j]){
+
                     int temp = tab[i][j];
                     for(int z = 0; z < X; z++){
                         if(tab[i][z] == temp){
@@ -104,15 +124,17 @@ int croix(int tab[Y][X], Donnees *data){
 int horizontal6(int tab[Y][X], Donnees *data){
     for(int i = 0; i < Y; i++){
         for(int j = 5; j < X; j++){
-            if(tab[i][j]==tab[i][j-1] && tab[i][j]==tab[i][j-2] && tab[i][j]==tab[i][j-3] && tab[i][j]==tab[i][j-4] && tab[i][j]==tab[i][j-5]){
+            if(tab[i][j]==tab[i][j-1] &&
+                 tab[i][j]==tab[i][j-2] &&
+                  tab[i][j]==tab[i][j-3] &&
+                   tab[i][j]==tab[i][j-4] &&
+                    tab[i][j]==tab[i][j-5]){
+
                 int temp = tab[i][j];
-                for(int z = 0; z < Y; z++){
-                    for(int a = 0; a < X; a++){
-                        if(tab[z][a] == temp){
-                            data->Contrat[temp][0]++;
-                            tab[z][a] = 0;
-                            
-                        }
+                for(int a = 0; a < X; a++){
+                    if(tab[i][a] == temp){
+                         data->Contrat[temp][0]++;
+                         tab[i][a] = 0; 
                     }
                 }
                 replace(tab);
@@ -126,14 +148,17 @@ int horizontal6(int tab[Y][X], Donnees *data){
 int vertical6(int tab[Y][X], Donnees *data){
     for(int i = 5; i < Y; i++){
         for(int j = 0; j < X; j++){
-            if(tab[i][j]==tab[i-1][j] && tab[i][j]==tab[i-2][j] && tab[i][j]==tab[i-3][j] && tab[i][j]==tab[i-4][j] && tab[i][j]==tab[i-5][j]){
+            if(tab[i][j]==tab[i-1][j] &&
+                 tab[i][j]==tab[i-2][j] &&
+                  tab[i][j]==tab[i-3][j] &&
+                   tab[i][j]==tab[i-4][j] &&
+                    tab[i][j]==tab[i-5][j]){
+
                 int temp = tab[i][j];
                 for(int z = 0; z < Y; z++){
-                    for(int a = 0; a < X; a++){
-                        if(tab[z][a] == temp){
-                            tab[z][a] = 0;
-                            data->Contrat[temp][0]++;
-                        }
+                    if(tab[z][j] == temp){
+                        tab[z][j] = 0;
+                        data->Contrat[temp][0]++;
                     }
                 }
                 replace(tab);
