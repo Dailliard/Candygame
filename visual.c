@@ -14,11 +14,47 @@ void winlevel(Donnees *data){
     //Que voulez vous faire ?
     //Save and quit
     //Faire le prochain niveau
+    system("cls");
+
+    int centre_x, centre_y;
+    centre_x = CONSOLE_WIDTH / 2;
+    centre_y = 10;
+    gotoxy(centre_x-11, centre_y);
+    printf("----------------------");
+    gotoxy(centre_x-11, centre_y + 1);
+    printf("|    Félicitation    |");
+    gotoxy(centre_x-11, centre_y + 2);
+    printf("|        🏆         |");
+    gotoxy(centre_x-11, centre_y + 3);
+    printf("----------------------");
+    gotoxy(40, centre_y + 5);
+    printf("Bravo %s ! Vous avez terminé le niveau %d avec %d vies restantes.\n", data->pseudo, data->level, data->vies);
+    gotoxy(40, centre_y + 7);
+    printf("[Vous pouvez passer au niveau suivant ou sauvegarder et quitter.]\n");
+    gotoxy(40, centre_y + 8);
+    printf("[Appuyez sur 'N' pour le niveau suivant ou 'S' pour sauvegarder et quitter.]\n");
 }
 
 void wingame(Donnees *data){
     //Mettre bravo pseudo vous avez fini le jeu avec ? vies restantes 
     //Appuyer sur espace pour retourner au menu
+    system("cls");
+
+    int centre_x, centre_y;
+    centre_x = CONSOLE_WIDTH / 2;
+    centre_y = 10;
+    gotoxy(centre_x-11, centre_y);
+    printf("----------------------");
+    gotoxy(centre_x-11, centre_y + 1);
+    printf("|    Félicitation    |");
+    gotoxy(centre_x-11, centre_y + 2);
+    printf("|        🏆         |");
+    gotoxy(centre_x-11, centre_y + 3);
+    printf("----------------------");
+    gotoxy(40, centre_y + 5);
+    printf("Bravo %s ! Vous avez remporté la partie avec %d vies restantes.\n", data->pseudo, data->vies);
+    gotoxy(40, centre_y + 7);
+    printf("[Appuyez sur espace pour retourner au menu.]\n");
 }
 
 void looselevel(Donnees *data){
@@ -26,11 +62,47 @@ void looselevel(Donnees *data){
     //Que voulez vous faire ?
     //Save and quit
     //Retenter le niveau
+    system("cls");
+
+    int centre_x, centre_y;
+    centre_x = CONSOLE_WIDTH / 2;
+    centre_y = 10;
+    gotoxy(centre_x-11, centre_y);
+    printf("----------------------");
+    gotoxy(centre_x-11, centre_y + 1);
+    printf("|      Défaite      |");
+    gotoxy(centre_x-11, centre_y + 2);
+    printf("|        ❌         |");
+    gotoxy(centre_x-11, centre_y + 3);
+    printf("----------------------");
+    gotoxy(40, centre_y + 5);
+    printf("Dommage %s ! Vous avez échoué le niveau %d avec %d vies restantes.\n", data->pseudo, data->level, data->vies);
+    gotoxy(40, centre_y + 7);
+    printf("[Vous pouvez recommencer le niveau ou sauvegarder et quitter.]\n");
+    gotoxy(40, centre_y + 8);
+    printf("[Appuyez sur 'R' pour recommencer le niveau ou 'S' pour sauvegarder et quitter.]\n");
 }
 
 void loosegame(Donnees *data){
     //Mettre Game Over pseudo
     //Appuyer sur espace pour retourner au menu
+    system("cls");
+
+    int centre_x, centre_y;
+    centre_x = CONSOLE_WIDTH / 2;
+    centre_y = 10;
+    gotoxy(centre_x-11, centre_y);
+    printf("----------------------");
+    gotoxy(centre_x-11, centre_y + 1);
+    printf("|      Défaite      |");
+    gotoxy(centre_x-11, centre_y + 2);
+    printf("|        ❌         |");
+    gotoxy(centre_x-11, centre_y + 3);
+    printf("----------------------");
+    gotoxy(40, centre_y + 5);
+    printf("GAME OVER %s ... Vous avez perdu la partie, réessayez une prochaine fois.\n", data->pseudo);
+    gotoxy(40, centre_y + 7);
+    printf("[Appuyez sur espace pour retourner au menu.]\n");
 }
 
 void viewmap(int tab[Y][X], int a, int b, int sel){
