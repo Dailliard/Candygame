@@ -38,9 +38,9 @@ void affichage_partie(int tab[Y][X], Donnees *data, int sec_r){
 
     gotoxy(0, 8);
     printf("Contrats:\n");
-    const char* emoji[] = {"🐶", "😺", "🐮", "🐴", "🐔"};
+    const char* emoji_contrat[] = {"🐶", "😺", "🐮", "🐴", "🐔"};
     for(int i = 0; i < 5; i++){
-        printf("- %s : %d/%d\n", emoji[i], data->Contrat[i][0], data->Contrat[i][1]);
+        printf("- %s : %d/%d\n", emoji_contrat[i], data->Contrat[i][0], data->Contrat[i][1]);
     }
 
     gotoxy(25, 5);
