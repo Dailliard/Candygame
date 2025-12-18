@@ -8,6 +8,7 @@
 
 typedef struct {
     int level;
+    int vies;
     int Contrat[6][2];
     int coups;
 } Donnees;

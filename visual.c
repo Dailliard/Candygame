@@ -7,6 +7,26 @@
 #include "game.h"
 #include "const.h"
 #include "affichage_console.h"
+#include "chrono.h"
+
+#define CONSOLE_WIDTH 80
+
+void affichage_partie(int tab[Y][X], Donnees *data, int sec_r){
+	system("cls");
+    gotoxy(0, 0);
+	printf("Niveau %d \n", data->level);
+
+    int vies = (CONSOLE_WIDTH / 2) - 6;
+    gotoxy(vies, 0);
+    printf("Vies: ");
+    for(int i = 0; i < 3; i++){
+        if(i < data->vies){
+            printf("❤️ ");
+        }else{
+            printf("🖤 ");
+        }
+    }
+}
 
 void viewmap(int tab[Y][X], int a, int b, int sel){
     const char* emoji[] = {" ", "🐶", "😺", "🐮", "🐴", "🐔"};
