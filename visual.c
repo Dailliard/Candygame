@@ -16,9 +16,10 @@ void affichage_partie(int tab[Y][X], Donnees *data, int sec_r){
 	system("cls");
     gotoxy(0, 0);
 	printf("Niveau %d \n", data->level);
+
     data->vies=3;
-    int vies = (CONSOLE_WIDTH / 2) - 6;
-    gotoxy(vies, 0);
+    int vies_pos = (CONSOLE_WIDTH / 2) - 6;
+    gotoxy(vies_pos, 0);
     printf("Vies: ");
     for(int i = 0; i < 3; i++){
         if(i < data->vies){
@@ -27,6 +28,24 @@ void affichage_partie(int tab[Y][X], Donnees *data, int sec_r){
             printf("🖤 ");
         }
     }
+
+    int time_pos = CONSOLE_WIDTH - 14;
+    gotoxy(time_pos, 0);
+    printf("Temps: %d", sec_r);
+
+    gotoxy(0, 2);
+    printf("Coups restants: %d\n", data->coups);
+
+    gotoxy(0, 8);
+    printf("Contrats:\n");
+    const char* emoji[] = {"🐶", "😺", "🐮", "🐴", "🐔"};
+    for(int i = 0; i < 5; i++){
+        printf("- %s : %d/%d\n", emoji[i], data->Contrat[i][0], data->Contrat[i][1]);
+    }
+
+    gotoxy(25, 5);
+    viewmap(tab, -1, -1, 0);
+
     }while(getch()!='p');
 }
 
