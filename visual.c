@@ -9,7 +9,7 @@
 #include "affichage_console.h"
 
 void viewmap(int tab[Y][X], int a, int b, int sel){
-    const char* emoji[] = {" ", "🐶", "😺", "🐹", "🐴", "🐤"};
+    const char* emoji[] = {" ", "🐶", "😺", "🐮", "🐴", "🐔"};
     system("cls");
     text_color(0);
     for(int y = 0; y < Y; y++){

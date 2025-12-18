@@ -8,20 +8,6 @@
 #include "forme.h"
 #include "chrono.h"
 
-int takecoo(int *y, int *x, Donnees *data){
-    for(int i=1;i<6;i++){
-        printf("|%d : %d / %d |",i,data->Contrat[i][0],data->Contrat[i][1]);
-    }
-    printf("\nCoups restants : %d",data->coups);
-    printf("\nEntrez les coordonnees y et x de l'objet a selectionner :\n");
-    scanf("%d", y);
-    scanf("%d", x);
-    int direction;
-    printf("Entrez la direction \n1.haut\n2.bas\n3.gauche\n4.droite\n");
-    scanf("%d", &direction);
-    return direction;
-}
-
 void change(int tab[Y][X], int y, int x, int direction){
     int temp;
     switch(direction){
@@ -47,7 +33,6 @@ void change(int tab[Y][X], int y, int x, int direction){
             break;
     }
 }
-
 
 void partie(Donnees *data){
     int tab[Y][X];
