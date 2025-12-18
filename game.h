@@ -7,5 +7,6 @@ void sauvegarder(Donnees *data);
 void supprimer(Donnees *data);
 
 void new_game(void);
+void charge_game(void);
 
 #endif

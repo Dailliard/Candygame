@@ -209,6 +209,7 @@ void new_game(){
     char pseudo[21];
     FILE *f = fopen(ENREGISTREMENT, "r");
     int verif=0;
+    system("cls");
     printf("Entrez votre pseudo : ");
     do{
         
@@ -237,4 +238,55 @@ void new_game(){
     fprintf(d, "%s;%d;%d\n", pseudo, 3, 1);
     fclose(d);
     level1(pseudo);
+}
+
+void charge_game(){
+    system("cls");
+    char pseudo[21];
+    FILE *f = fopen(ENREGISTREMENT, "r");
+    if(f==NULL){
+        do{
+            printf("Attention aucune sauvegarde !\n");
+            printf("Cliquer sur une touche");
+        }while(!getch());
+        return;
+    }
+    int verif=0;
+    
+    do{
+        system("cls");
+        printf("Entrez votre pseudo : ");
+        fgets(pseudo,21,stdin);
+        pseudo[strlen(pseudo)-1]='\0';
+        char temps[21];
+        int temp1,temp2;
+        char ligne[256];
+        while(fgets(ligne,sizeof(ligne), f)!=NULL){
+            if(sscanf(ligne, "%[^;];%d;%d",temps,&temp1,&temp2)==3){
+                if(strcmp(temps,pseudo) == 0){
+                    verif=1;
+                    chargelevel(pseudo);
+                    return;
+                }
+            }
+        }
+        if(verif==0){
+            char action;
+            do{
+                if(action=='1'){
+                    verif=0;
+                    break;
+                }
+                if(action=='2'){
+                    new_game();
+                    verif=1;
+                    break;
+                }
+                system("cls");
+                printf("Pseudo Inexistant !\n");
+                printf("1. Essayer un autre pseudo\n");
+                printf("2. Jouer une nouvelle partie\n");
+            }while(action = getch());
+        }
+    }while(verif==0);
 }

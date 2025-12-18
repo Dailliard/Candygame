@@ -194,8 +194,8 @@ void menu() {
     char action;
     do{
         if(action == '4')break;
-        else if(action == '3') rules();
-        else if(action == '2')break;
+        else if(action == '3')rules();
+        else if(action == '2')charge_game();
         else if(action == '1')new_game();
         system("cls");
         int choice;
