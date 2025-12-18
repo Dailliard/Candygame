@@ -9,11 +9,21 @@
 #include "affichage_console.h"
 
 void viewmap(int tab[Y][X]){
+    int a=3;
+    int b=2;
+    const char* emoji[] = {" ", "🐶", "😺", "🐹", "🐴", "🐤"};
     system("cls");
+    text_color(0);
     for(int y = 0; y < Y; y++){
         for(int x =  0; x < X; x++){
-            text_color(tab[y][x]);
-            printf("|%s|", emoji[tab[y][x]]);
+            if(a==y && b==x){
+                text_color(4);
+                printf("|%s|", emoji[tab[y][x]]);
+            }
+            else {
+                text_color(0);
+                printf("|%s|", emoji[tab[y][x]]);
+            }
         }
         printf("\n");
     }
