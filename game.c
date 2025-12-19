@@ -216,8 +216,7 @@ void sauvegarder(Donnees *data){
     }
     fclose(f);
     fclose(temp);
-    remove(ENREGISTREMENT);
-    rename("temp.txt", ENREGISTREMENT);
+    CopyFile("temp.txt", ENREGISTREMENT, FALSE);
 }
 
 void supprimer(Donnees *data){
@@ -267,8 +266,8 @@ void new_game(){
                         break;
                     }
                 }
+                verif=0;
             }
-            verif=0;
         }
     }while(verif==1);
     fclose(f);
