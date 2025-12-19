@@ -90,7 +90,7 @@ void looselevel(Donnees *data){
         gotoxy(centre_x-11, centre_y + 3);
         printf("---------------------");
         gotoxy(20, centre_y + 5);
-        printf("Dommage %s ! Vous avez échoué le niveau %d avec %d vies restantes.\n", data->pseudo, data->level, data->vies);
+        printf("Dommage %s ! Vous avez échoué le niveau %d vous avez %d vies restantes.\n", data->pseudo, data->level, data->vies);
         gotoxy(20, centre_y + 7);
         printf("[Vous pouvez recommencer le niveau ou sauvegarder et quitter.]\n");
         gotoxy(20, centre_y + 8);
