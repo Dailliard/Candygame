@@ -1,6 +1,8 @@
 #include <time.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <conio.h>
+#include <windows.h>
 
 #include "const.h"
 #include "visual.h"
@@ -39,8 +41,12 @@ void descendre(int tab[Y][X]){
     }
 }
 
-void replace(int tab[Y][X]){
+void replace(int tab[Y][X], Donnees *data){
     descendre(tab);
+    if(data->view==1){
+        affichage_partie(tab,data,0,0,0);
+        Sleep(250);
+    }
     add(tab);
 }
 
@@ -59,7 +65,7 @@ int malus(int tab[Y][X], Donnees *data){
                 tab[i-1][j] = 0;
                 tab[i-1][j-1] = 0;
 
-                replace(tab);
+                replace(tab,data);
                 return 1;
             }
         }
@@ -89,7 +95,7 @@ int bonuslife(int tab[Y][X], Donnees *data){
                                             tab[z][a] = 0;
                                     }
                                 }
-                                replace(tab);
+                                replace(tab,data);
                                 if(data->vies<3)data->vies++;
                                 return 1;
                             }
@@ -131,7 +137,7 @@ int carre(int tab[Y][X], Donnees *data){
                                     
                                 }
                             }
-                            replace(tab);
+                            replace(tab,data);
                             return 1;
                         }
                     }
@@ -170,7 +176,7 @@ int croix(int tab[Y][X], Donnees *data){
                         }
                         
                     }
-                    replace(tab);
+                    replace(tab,data);
                     return 1;
                 }
             } 
@@ -198,7 +204,7 @@ int horizontal8(int tab[Y][X], Donnees *data){
                     }
                 }
                 tab[i][j]=6;
-                replace(tab);
+                replace(tab,data);
                 return 1;
             }
         }
@@ -225,7 +231,7 @@ int vertical8(int tab[Y][X], Donnees *data){
                     }
                 }
                 tab[i][j]=6;
-                replace(tab);
+                replace(tab,data);
                 return 1;
             }
         }
@@ -249,7 +255,7 @@ int horizontal6(int tab[Y][X], Donnees *data){
                          tab[i][a] = 0; 
                     }
                 }
-                replace(tab);
+                replace(tab,data);
                 return 1;
             }
         }
@@ -273,7 +279,7 @@ int vertical6(int tab[Y][X], Donnees *data){
                         data->Contrat[temp][0]++;
                     }
                 }
-                replace(tab);
+                replace(tab,data);
                 return 1;
             }
         }
@@ -293,7 +299,7 @@ int horizontal4(int tab[Y][X], Donnees *data){
                 tab[i][j-1] = 0;
                 tab[i][j-2] = 0;
                 tab[i][j-3] = 0;
-                replace(tab);
+                replace(tab,data);
                 return 1;
             }
         }
@@ -310,7 +316,7 @@ int vertical4(int tab[Y][X], Donnees *data){
                 tab[i-1][j] = 0;
                 tab[i-2][j] = 0;
                 tab[i-3][j] = 0;
-                replace(tab);
+                replace(tab,data);
                 return 1;
             }
         }

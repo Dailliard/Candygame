@@ -17,5 +17,6 @@ typedef struct {
     int etat;
     int tempsR;
     int tempsM;
+    int view;
 } Donnees;
 #endif

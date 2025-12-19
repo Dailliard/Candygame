@@ -59,7 +59,9 @@ void change(int tab[Y][X], int y, int x, int direction){
 void partie(Donnees *data){
     int tab[Y][X];
     int sel=0;
+    data->view=0;
     createtab(tab, data);
+    data->view=1;
     for(int i=1;i<6;i++){
         data->Contrat[i][0]=0;
     }
