@@ -180,13 +180,32 @@ void rules(void){
         system("cls");
         printf("Règles du jeu:\n\n");
         printf("🎯 BUT : Remplir les contrats en remplissant les alignements d'items\n");
-        printf("📃 Contrats : Eliminer X items de chaques types demandés\n");
+        printf("📃 Contrats : Eliminer X items de chaques types demandés dans le temps imparti\n");
         printf("🧩 Figures :\n");
-        printf("     - Alignement : 4 items identiques horizontalement ou verticalement\n");
+        printf("     - Alignement de 4 : élimine les 4 items\n");
         printf("     Figures spéciales :\n");
-        printf("         - Alignement de 4 : élimine toute la ligne\n");
-        printf("         - Alignement de 6 : élimine tous les items de la même famille\n");
-        printf("         - Croix de 9 : élimine ligne x colone\n");
+        printf("         - Alignement de 6 : élimine tous les items de la même famille sur la ligne ou la colonne correspondante\n");
+        printf("         - Croix de 9 : élimine ligne x colonne\n");
+        printf("         - Carré 4x4 : élimine tous les items de la même famille dans le carré\n");
+        printf("🦄 Bonus (à partir du niveau 2) :\n");
+        printf("     - item spécial : formez une ligne de 8 items identiques pour créer un item spécial\n");
+        printf("     - Vie : formez un carré 3x3 de 🐴 avec une 🦄 au centre pour gagner une vie (max 3 vies)\n");
+        printf("⚠️ Malus (à partir du niveau 3) :\n");
+        printf("     - carré 2x2 :  vous perdez 8 items du même type dans le contrat\n");
+        printf("\nAppuyez sur ESPACE pour revenir au menu principal\n");
+    }while(action = getch());
+}
+
+void cmds(void){
+    char action;
+    do{
+        if(action == ' ')break;
+        system("cls");
+        printf("Commandes du jeu:\n\n");
+        printf("     - ⌨️  ZQSD pour déplacer le curseur\n");
+        printf("     - 👾 Espace pour sélectionner/déselectionner un item\n");
+        printf("     - 🎶 6 et 7 pour activer/désactiver la musique\n");
+        printf("     - 😔 p pour abandonner la partie\n");
         printf("\nAppuyez sur ESPACE pour revenir au menu principal\n");
     }while(action = getch());
 }
@@ -195,13 +214,14 @@ void menu() {
     char action;
     do{
         
-        if(action =='6'){
+        if(action =='7'){
             arreter_musique();
         }
-        else if(action =='5'){
+        else if(action =='6'){
             demarrer_musique();
         }
-        else if(action == '4')break;
+        else if(action == '5')break;
+        else if(action == '4')cmds();
         else if(action == '3')rules();
         else if(action == '2')charge_game();
         else if(action == '1')new_game();
@@ -211,6 +231,7 @@ void menu() {
         printf("1. 🎮 Nouvelle Partie\n");
         printf("2. ⏯️  Reprendre une partie\n");  
         printf("3. 📖 Lire les règles du jeu\n");
-        printf("4. 🔚 Quitter\n");
+        printf("4. 🎮 Voir les commandes du jeu\n");
+        printf("5. 🔚 Quitter\n");
     }while(action = getch());
 }

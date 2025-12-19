@@ -285,7 +285,10 @@ int vertical6(int tab[Y][X], Donnees *data){
 int horizontal4(int tab[Y][X], Donnees *data){
     for(int i = Y-1; i >=0; i--){
         for(int j = 3; j < X; j++){
-            if(tab[i][j]==tab[i][j-1] && tab[i][j]==tab[i][j-2] && tab[i][j]==tab[i][j-3]){
+            if(tab[i][j]==tab[i][j-1] &&
+                 tab[i][j]==tab[i][j-2] &&
+                  tab[i][j]==tab[i][j-3]){
+                    
                 data->Contrat[tab[i][j]][0]+=4;
                 tab[i][j] = 0;
                 tab[i][j-1] = 0;

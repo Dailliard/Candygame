@@ -81,11 +81,11 @@ void partie(Donnees *data){
             action = getch();
 
             //on/off music
-            if (action == '5'){
+            if (action == '6'){
                 demarrer_musique();
             }
 
-            if(action =='6'){
+            if(action =='7'){
                 arreter_musique();
             }
         
