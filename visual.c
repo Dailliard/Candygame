@@ -25,20 +25,20 @@ void winlevel(Donnees *data){
         system("cls");
         int centre_x, centre_y;
         centre_x = CONSOLE_WIDTH / 2;
-        centre_y = 10;
+        centre_y = 6;
         gotoxy(centre_x-11, centre_y);
         printf("----------------------");
         gotoxy(centre_x-11, centre_y + 1);
         printf("|    Félicitation    |");
         gotoxy(centre_x-11, centre_y + 2);
-        printf("|         🏆         |");
+        printf("|         ✅         |");
         gotoxy(centre_x-11, centre_y + 3);
         printf("----------------------");
-        gotoxy(20, centre_y + 5);
+        gotoxy(10, centre_y + 5);
         printf("Bravo %s ! Vous avez terminé le niveau %d avec %d vies restantes.\n", data->pseudo, data->level, data->vies);
-        gotoxy(20, centre_y + 7);
+        gotoxy(10, centre_y + 7);
         printf("[Vous pouvez passer au niveau suivant ou sauvegarder et quitter.]\n");
-        gotoxy(20, centre_y + 8);
+        gotoxy(10, centre_y + 8);
         printf("[Appuyez sur ESPACE pour le niveau suivant ou q pour sauvegarder et quitter.]\n");
     }while(action = getch());
 }
@@ -48,25 +48,43 @@ void wingame(Donnees *data){
         system("cls");
         int centre_x, centre_y;
         centre_x = CONSOLE_WIDTH / 2;
-        centre_y = 10;
+        centre_y = 6;
+
+        gotoxy(0, 0);   printf("🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅🏅");
+        for(int y=1; y<25; y++){
+            gotoxy(0, y);   printf("🎉");
+            gotoxy(CONSOLE_WIDTH-1, y); printf("✨");
+        }
+        gotoxy(0, 25);   printf("🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺🕺");
+
+        gotoxy(10, 2);  printf("🎈");
+        gotoxy(5, 3);   printf("🎊");
+        gotoxy(10, 8);  printf("🏆");
+        gotoxy(70, 6);  printf("🎉");
+        gotoxy(90, 12); printf("✨");
+        gotoxy(15, 20); printf("🥇");
+        gotoxy(60, 22); printf("🏅");
+        gotoxy(30, 16); printf("🎆");
+        gotoxy(80, 18); printf("🎇");
+
         gotoxy(centre_x-11, centre_y);
         printf("----------------------");
         gotoxy(centre_x-11, centre_y + 1);
-        printf("|    Félicitation    |");
+        printf("|      VICTOIRE      |");
         gotoxy(centre_x-11, centre_y + 2);
         printf("|         🏆         |");
         gotoxy(centre_x-11, centre_y + 3);
         printf("----------------------");
-        gotoxy(20, centre_y + 5);
+        gotoxy(10, centre_y + 5);
         printf("Bravo %s ! Vous avez remporté la partie avec %d vies restantes.\n", data->pseudo, data->vies);
-        gotoxy(20, centre_y + 7);
+        gotoxy(10, centre_y + 7);
         printf("[Appuyez sur ESPACE pour retourner au menu.]\n");
     }while(getch()!=' ');
     supprimer(data);
 }
 
 void looselevel(Donnees *data){
-    char action;
+    char action='0';
     do{
         if(action ==' '){
             sauvegarder(data);
@@ -80,22 +98,24 @@ void looselevel(Donnees *data){
         system("cls");
         int centre_x, centre_y;
         centre_x = CONSOLE_WIDTH / 2;
-        centre_y = 10;
+        centre_y = 6;
+
         gotoxy(centre_x-11, centre_y);
         printf("---------------------");
         gotoxy(centre_x-11, centre_y + 1);
         printf("|      Défaite      |");
         gotoxy(centre_x-11, centre_y + 2);
-        printf("|        ❌         |");
+        printf("|        🥹          |");
         gotoxy(centre_x-11, centre_y + 3);
         printf("---------------------");
-        gotoxy(20, centre_y + 5);
-        printf("Dommage %s ! Vous avez échoué le niveau %d vous avez %d vies restantes.\n", data->pseudo, data->level, data->vies);
-        gotoxy(20, centre_y + 7);
+        gotoxy(10, centre_y + 5);
+        printf("Dommage %s ! Vous avez échoué le niveau %d il vous reste %d vies.\n", data->pseudo, data->level, data->vies);
+        gotoxy(10, centre_y + 7);
         printf("[Vous pouvez recommencer le niveau ou sauvegarder et quitter.]\n");
-        gotoxy(20, centre_y + 8);
+        gotoxy(10, centre_y + 8);
         printf("[Appuyez sur ESPACE pour recommencer le niveau ou 'q' pour sauvegarder et quitter.]\n");
     }while(action = getch());
+
 }
 
 void loosegame(Donnees *data){
@@ -103,18 +123,41 @@ void loosegame(Donnees *data){
         system("cls");
         int centre_x, centre_y;
         centre_x = CONSOLE_WIDTH / 2;
-        centre_y = 10;
+        centre_y = 6;
+
+        gotoxy(0, 0);   printf("💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀");
+        for(int y=1; y<25; y++){
+            gotoxy(0, y);   printf("😔");
+            gotoxy(CONSOLE_WIDTH-1, y); printf("😵");
+        }
+        for(int x = 0; x < CONSOLE_WIDTH; x++){
+            gotoxy(x, 25);
+            printf("💀");
+        }
+        gotoxy(0, 25);   printf("🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬🤬");
+
+        gotoxy(8, 3);   printf("💔");
+        gotoxy(15, 10); printf("😫");
+        gotoxy(70, 5);  printf("😤");
+        gotoxy(90, 12); printf("🥀");
+        gotoxy(20, 18); printf("🩸");
+        gotoxy(60, 21); printf("🐀");
+        gotoxy(30, 15); printf("🤢");
+        gotoxy(80, 22); printf("👻");
+        gotoxy(10, 24); printf("   🤣");
+        gotoxy(9, 24);  printf("🫵");
+
         gotoxy(centre_x-11, centre_y);
         printf("---------------------");
         gotoxy(centre_x-11, centre_y + 1);
-        printf("|      Défaite      |");
+        printf("|     GAME OVER     |");
         gotoxy(centre_x-11, centre_y + 2);
-        printf("|        ❌         |");
+        printf("|        😭         |");
         gotoxy(centre_x-11, centre_y + 3);
         printf("---------------------");
-        gotoxy(20, centre_y + 5);
+        gotoxy(10, centre_y + 5);
         printf("GAME OVER %s ... Vous avez perdu la partie, réessayez une prochaine fois.\n", data->pseudo);
-        gotoxy(20, centre_y + 7);
+        gotoxy(10, centre_y + 7);
         printf("[Appuyez sur ESPACE pour retourner au menu.]\n");
     }while(getch()!=' ');
     supprimer(data);
