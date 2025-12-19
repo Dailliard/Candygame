@@ -8,6 +8,7 @@
 #include "const.h"
 #include "affichage_console.h"
 #include "chrono.h"
+#include "music.h"
 
 void winlevel(Donnees *data){
     char action;
@@ -193,7 +194,14 @@ void rules(void){
 void menu() {
     char action;
     do{
-        if(action == '4')break;
+        
+        if(action =='6'){
+            arreter_musique();
+        }
+        else if(action =='5'){
+            demarrer_musique();
+        }
+        else if(action == '4')break;
         else if(action == '3')rules();
         else if(action == '2')charge_game();
         else if(action == '1')new_game();

@@ -10,6 +10,7 @@
 #include "forme.h"
 #include "chrono.h"
 #include "affichage_console.h"
+#include "music.h"
 
 void issues(Donnees *data){
     if(data->etat==5){
@@ -78,6 +79,16 @@ void partie(Donnees *data){
         // Vérifier si une touche est pressée (non-bloquant)
         if(kbhit()){
             action = getch();
+
+            //on/off music
+            if (action == '5'){
+                demarrer_musique();
+            }
+
+            if(action =='6'){
+                arreter_musique();
+            }
+        
             int moved = 0;  // Flag pour savoir si on a bougé
             
             if(sel==0){
