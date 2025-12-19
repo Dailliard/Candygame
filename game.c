@@ -240,12 +240,11 @@ void supprimer(Donnees *data){
 
 void new_game(){
     char pseudo[21];
-    FILE *f = fopen(ENREGISTREMENT, "r");
     int verif=0;
     system("cls");
     printf("Entrez votre pseudo : ");
     do{
-        verif=0;
+        FILE *f = fopen(ENREGISTREMENT, "r");
         fgets(pseudo,21,stdin);
         pseudo[strlen(pseudo)-1]='\0';
         if(f==NULL)verif=0;
@@ -253,20 +252,21 @@ void new_game(){
             char temps[21];
             int temp1,temp2;
             char ligne[256];
+            verif=0;
             while(fgets(ligne,sizeof(ligne), f)!=NULL){
                 if(sscanf(ligne, "%[^;];%d;%d",temps,&temp1,&temp2)==3){
                     if(strcmp(temps,pseudo) == 0){
                         verif=1;
                         system("cls");
-                        printf("Pseudo déja pris choisissez-en un autre !\n");
+                        printf("Pseudo déjà pris choisissez-en un autre !\n");
+                        f=0;
                         break;
                     }
                 }
-                verif=0;
             }
         }
-    }while(verif==1);
     fclose(f);
+    }while(verif==1);
     FILE *d = fopen(ENREGISTREMENT, "a");
     fprintf(d, "%s;%d;%d\n", pseudo, 3, 1);
     fclose(d);

@@ -1,5 +1,8 @@
 test0;3;1
 test1;1;2
 test2;2;3
-testeur;3;1
+testeur;2;1
 t;3;1
+testeur;2;1
+testeur;2;1
+y;2;1
