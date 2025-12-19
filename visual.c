@@ -14,11 +14,13 @@ void winlevel(Donnees *data){
     char action;
     do{
         if(action ==' '){
+            data->level++;
             sauvegarder(data);
             chargelevel(data->pseudo);
             return;
         }
         if(action =='q'){
+            data->level++;
             sauvegarder(data);
             return; 
         }

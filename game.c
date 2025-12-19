@@ -18,7 +18,6 @@ void issues(Donnees *data){
             wingame(data);
         }else{
             winlevel(data);
-            data->level++;
         }
     }else{
         if(data->vies==1){
