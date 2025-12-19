@@ -119,9 +119,9 @@ void partie(Donnees *data){
 void level1(char pseudo[21],int vie){
     Donnees data;
     data.level = 1;
-    data.coups = 30;
+    data.coups = 35;
     data.vies = vie;
-    data.tempsM = 120;
+    data.tempsM = 300;
     strcpy(data.pseudo,pseudo);
     start_timer(&data);
     data.Contrat[1][1]=10;
@@ -245,7 +245,7 @@ void new_game(){
     system("cls");
     printf("Entrez votre pseudo : ");
     do{
-        
+        verif=0;
         fgets(pseudo,21,stdin);
         pseudo[strlen(pseudo)-1]='\0';
         if(f==NULL)verif=0;

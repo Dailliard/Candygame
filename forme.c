@@ -67,7 +67,6 @@ int malus(int tab[Y][X], Donnees *data){
     return 0;
 }
 
-
 int bonuslife(int tab[Y][X], Donnees *data){
     for(int i = 2; i < Y; i++){
         for(int j = 2; j < X; j++){
