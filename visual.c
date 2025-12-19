@@ -67,6 +67,7 @@ void wingame(Donnees *data){
         gotoxy(30, 16); printf("🎆");
         gotoxy(80, 18); printf("🎇");
 
+        text_color(GREEN);
         gotoxy(centre_x-11, centre_y);
         printf("----------------------");
         gotoxy(centre_x-11, centre_y + 1);
@@ -75,6 +76,7 @@ void wingame(Donnees *data){
         printf("|         🏆         |");
         gotoxy(centre_x-11, centre_y + 3);
         printf("----------------------");
+        text_color(WHITE);
         gotoxy(10, centre_y + 5);
         printf("Bravo %s ! Vous avez remporté la partie avec %d vies restantes.\n", data->pseudo, data->vies);
         gotoxy(10, centre_y + 7);
@@ -147,6 +149,7 @@ void loosegame(Donnees *data){
         gotoxy(10, 24); printf("   🤣");
         gotoxy(9, 24);  printf("🫵");
 
+        text_color(RED);
         gotoxy(centre_x-11, centre_y);
         printf("---------------------");
         gotoxy(centre_x-11, centre_y + 1);
@@ -155,10 +158,12 @@ void loosegame(Donnees *data){
         printf("|        😭         |");
         gotoxy(centre_x-11, centre_y + 3);
         printf("---------------------");
+        text_color(WHITE);
         gotoxy(10, centre_y + 5);
-        printf("GAME OVER %s ... Vous avez perdu la partie, réessayez une prochaine fois.\n", data->pseudo);
+        printf("Bien tenté %s ... Vous avez perdu la partie, réessayez une prochaine fois.\n", data->pseudo);
         gotoxy(10, centre_y + 7);
         printf("[Appuyez sur ESPACE pour retourner au menu.]\n");
+
     }while(getch()!=' ');
     supprimer(data);
 }
