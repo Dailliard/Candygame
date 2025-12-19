@@ -65,32 +65,17 @@ void partie(Donnees *data){
     }
     int x=0, y=0;
     char action = 0;
-    int lastTemps = -1;  // Pour détecter si le temps a changé
-    
-    // Mettre à jour le temps restant initial
+    int lastTemps = -1;
     data->tempsR = data->tempsM - time(NULL);
     affichage_partie(tab, data, y, x, sel);
     lastTemps = data->tempsR;
-    
     while(1){
-        // Mettre à jour le temps restant
         data->tempsR = data->tempsM - time(NULL);
-        
-        // Vérifier si une touche est pressée (non-bloquant)
         if(kbhit()){
             action = getch();
-
-            //on/off music
-            if (action == '6'){
-                demarrer_musique();
-            }
-
-            if(action =='7'){
-                arreter_musique();
-            }
-        
-            int moved = 0;  // Flag pour savoir si on a bougé
-            
+            if (action == '6')demarrer_musique();
+            if(action =='7')arreter_musique();
+            int moved = 0;
             if(sel==0){
                 if (action == 'z' && y!=0) { y--; moved = 1; }
                 if (action == 's' && y!=Y-1) { y++; moved = 1; }
@@ -107,18 +92,15 @@ void partie(Donnees *data){
                 else sel=0;
                 moved = 1;
             }
-            
             if(moved){
                 recherche_formes(tab, data);
                 affichage_partie(tab, data, y, x, sel);
                 lastTemps = data->tempsR;
             }
         } else {
-            // Pas de touche pressée : rafraîchir seulement le temps si changé
             if(data->tempsR != lastTemps){
-                // Effacer toute la zone droite de la ligne 0
-                gotoxy(80, 0);
-                printf("                    ");  // 20 espaces pour tout effacer
+                gotoxy(CONSOLE_WIDTH - 14, 0);
+                printf("                    ");
                 gotoxy(CONSOLE_WIDTH - 14, 0);
                 printf("Temps: ");
                 show_time(data->tempsR);
@@ -126,20 +108,14 @@ void partie(Donnees *data){
                 lastTemps = data->tempsR;
             }
         }
-        
-        // Vérifier les contrats remplis
         data->etat=0;
         for(int i=0;i<5;i++){
             if(data->Contrat[i+1][0]>=data->Contrat[i+1][1])data->etat++;
         }
-        
-        // Conditions de fin
         if (data->coups==0 || action == 'p' || data->etat == 5 || data->tempsR <= 0){
             issues(data);
             break;
         }
-        
-        // Petit délai pour éviter de surcharger le CPU
         Sleep(50);
     }
 }
