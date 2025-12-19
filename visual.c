@@ -269,7 +269,6 @@ void cmds(void){
 void menu() {
     char action;
     do{
-        
         if(action =='7'){
             arreter_musique();
         }
