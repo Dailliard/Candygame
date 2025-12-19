@@ -95,16 +95,12 @@ void partie(Donnees *data){
             if(moved){
                 recherche_formes(tab, data);
                 affichage_partie(tab, data, y, x, sel);
+                affichagetemps(data);
                 lastTemps = data->tempsR;
             }
         } else {
             if(data->tempsR != lastTemps){
-                gotoxy(CONSOLE_WIDTH - 14, 0);
-                printf("                    ");
-                gotoxy(CONSOLE_WIDTH - 14, 0);
-                printf("Temps: ");
-                show_time(data->tempsR);
-                fflush(stdout);
+                affichagetemps(data);
                 lastTemps = data->tempsR;
             }
         }
