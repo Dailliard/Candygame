@@ -248,7 +248,7 @@ void rules(void){
         printf("🦄 Bonus la licorn-bombe (à partir du niveau 3) :\n");
         printf("     - item spécial : formez une ligne de 7 items identiques pour créer un item spécial\n");
         printf("     - licorn-bombe : formez un carré 2x2 de 🦄 pour détruire l'entièreté de la grille\n");
-        printf("⚠️ Malus (à partir du niveau 2) :\n");
+        printf("⚠️  Malus (à partir du niveau 2) :\n");
         printf("     - carré 2x2 :  vous perdez 8 items du même type dans le contrat\n");
         printf("\nAppuyez sur ESPACE pour revenir au menu principal\n");
     }while(action = getch());

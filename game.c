@@ -136,15 +136,15 @@ void level1(char pseudo[21],int vie){
 void level2(char pseudo[21],int vie){
     Donnees data;
     data.level = 2;
-    data.coups = 60;
+    data.coups = 50;
     data.vies = vie;
-    data.tempsM = 450;
+    data.tempsM = 360;
     strcpy(data.pseudo,pseudo);
     start_timer(&data);
-    data.Contrat[1][1]=50;
-    data.Contrat[2][1]=30;
-    data.Contrat[3][1]=25;
-    data.Contrat[4][1]=60;
+    data.Contrat[1][1]=35;
+    data.Contrat[2][1]=20;
+    data.Contrat[3][1]=20;
+    data.Contrat[4][1]=35;
     data.Contrat[5][1]=20;
     partie(&data);
 }
@@ -152,16 +152,16 @@ void level2(char pseudo[21],int vie){
 void level3(char pseudo[21],int vie){
     Donnees data;
     data.level = 3;
-    data.coups = 110;
+    data.coups = 65;
     data.vies = vie;
-    data.tempsM = 600;
+    data.tempsM = 330;
     strcpy(data.pseudo,pseudo);
     start_timer(&data);
-    data.Contrat[1][1]=150;
-    data.Contrat[2][1]=100;
-    data.Contrat[3][1]=150;
-    data.Contrat[4][1]=100;
-    data.Contrat[5][1]=150;
+    data.Contrat[1][1]=115;
+    data.Contrat[2][1]=85;
+    data.Contrat[3][1]=115;
+    data.Contrat[4][1]=85;
+    data.Contrat[5][1]=115;
     partie(&data);
 }
 
