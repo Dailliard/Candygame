@@ -44,6 +44,65 @@ void replace(int tab[Y][X]){
     add(tab);
 }
 
+int malus(int tab[Y][X], Donnees *data){
+    for(int i = 1; i < Y; i++){
+        for(int j = 1; j < X; j++){
+            if(tab[i][j] != 0 &&
+               tab[i][j] == tab[i][j-1] &&
+               tab[i][j] == tab[i-1][j] &&
+               tab[i][j] == tab[i-1][j-1]){
+
+                data->Contrat[tab[i][j]][0] -= 8;
+
+                tab[i][j] = 0;
+                tab[i][j-1] = 0;
+                tab[i-1][j] = 0;
+                tab[i-1][j-1] = 0;
+
+                replace(tab);
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+
+int bonuslife(int tab[Y][X], Donnees *data){
+    for(int i = 2; i < Y; i++){
+        for(int j = 2; j < X; j++){
+            if(tab[i][j]==4 && tab[i-1][j-1]==6){
+                if(tab[i][j]==tab[i][j-1] &&
+                    tab[i][j]==tab[i][j-2]){
+
+                    if(tab[i][j]==tab[i-1][j] &&
+                        tab[i][j]==tab[i-2][j]){
+
+                        if(tab[i][j]==tab[i-2][j-1] &&
+                            tab[i][j]==tab[i-2][j-2]){
+
+                            if(tab[i][j]==tab[i-1][j-2] &&
+                                tab[i][j]==tab[i-2][j-2]){
+                                
+                                int temp = tab[i][j];
+                                for(int z = i-2; z <= i; z++){
+                                    for(int a = j-2; a <= j; a++){
+                                            tab[z][a] = 0;
+                                    }
+                                }
+                                replace(tab);
+                                if(data->vies<3)data->vies++;
+                                return 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return 0;
+}
+
 int carre(int tab[Y][X], Donnees *data){
     for(int i = 3; i < Y; i++){
         for(int j = 3; j < X; j++){
@@ -224,7 +283,7 @@ int vertical6(int tab[Y][X], Donnees *data){
 }
 
 int horizontal4(int tab[Y][X], Donnees *data){
-    for(int i = 0; i < Y; i++){
+    for(int i = Y-1; i >=0; i--){
         for(int j = 3; j < X; j++){
             if(tab[i][j]==tab[i][j-1] && tab[i][j]==tab[i][j-2] && tab[i][j]==tab[i][j-3]){
                 data->Contrat[tab[i][j]][0]+=4;
@@ -262,7 +321,10 @@ int recherche_formes(int tab[Y][X], Donnees *data){
     int count;
     do{
         count = 0;
-        if(data->level>2){
+        if(data->level>1){
+            if(data->level>2){
+                count+=malus(tab, data);
+            }
             count += bonuslife(tab, data);
             count += horizontal8(tab, data);
             count += vertical8(tab, data);
