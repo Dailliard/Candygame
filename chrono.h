@@ -1,5 +1,10 @@
+#ifndef CHRONO_H
+#define CHRONO_H
 
+#include "const.h"
 
-void start_timer(int duration);
-int remaining_time();
-void show_time();
+void start_timer(Donnees *data);
+
+void show_time(int temps);
+
+#endif

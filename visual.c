@@ -140,7 +140,7 @@ void viewmap(int tab[Y][X], int a, int b, int sel){
     printf("\n");
 }
 
-void affichage_partie(int tab[Y][X], Donnees *data,int y, int x, int sel, int sec_r){
+void affichage_partie(int tab[Y][X], Donnees *data,int y, int x, int sel){
 	system("cls");
     gotoxy(0, 0);
 	printf("Niveau %d \n", data->level);
@@ -156,7 +156,8 @@ void affichage_partie(int tab[Y][X], Donnees *data,int y, int x, int sel, int se
     }
     int time_pos = CONSOLE_WIDTH - 14;
     gotoxy(time_pos, 0);
-    printf("Temps: %d", sec_r);
+    printf("Temps: ");
+    show_time(data->tempsR);
 
     gotoxy(0, 2);
     printf("Coups restants: %d\n", data->coups);

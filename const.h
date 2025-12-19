@@ -15,9 +15,7 @@ typedef struct {
     int Contrat[6][2];
     int coups;
     int etat;
+    int tempsR;
+    int tempsM;
 } Donnees;
-
-static time_t end_time;
-
 #endif
-

@@ -9,6 +9,7 @@
 #include "create.h"
 #include "forme.h"
 #include "chrono.h"
+#include "affichage_console.h"
 
 void issues(Donnees *data){
     if(data->etat==5){
@@ -58,40 +59,78 @@ void partie(Donnees *data){
     int tab[Y][X];
     int sel=0;
     createtab(tab, data);
-    affichage_partie(tab, data, 0, 0, sel, 0);
     for(int i=1;i<6;i++){
         data->Contrat[i][0]=0;
     }
     int x=0, y=0;
-    char action;
-    do{
-        if(sel==0){
-            if (action == 'z' && y!=0) y--;
-            if (action == 's' && y!=Y-1) y++;
-            if (action == 'q' && x!=0) x--;
-            if (action == 'd' && x!=X-1) x++;
-        }else{
-            if (action == 'z' && y!=0){change(tab,y,x,1);sel=0;y--;data->coups--;}
-            if (action == 's' && y!=Y-1){change(tab,y,x,2);sel=0;y++;data->coups--;}
-            if (action == 'q' && x!=0){change(tab,y,x,3);sel=0;x--;data->coups--;}
-            if (action == 'd' && x!=X-1){change(tab,y,x,4);sel=0;x++;data->coups--;}
-        }
-        if (action == ' '){
-            if(sel == 0)sel=1;
-            else sel=0;
+    char action = 0;
+    int lastTemps = -1;  // Pour détecter si le temps a changé
+    
+    // Mettre à jour le temps restant initial
+    data->tempsR = data->tempsM - time(NULL);
+    affichage_partie(tab, data, y, x, sel);
+    lastTemps = data->tempsR;
+    
+    while(1){
+        // Mettre à jour le temps restant
+        data->tempsR = data->tempsM - time(NULL);
+        
+        // Vérifier si une touche est pressée (non-bloquant)
+        if(kbhit()){
+            action = getch();
+            int moved = 0;  // Flag pour savoir si on a bougé
+            
+            if(sel==0){
+                if (action == 'z' && y!=0) { y--; moved = 1; }
+                if (action == 's' && y!=Y-1) { y++; moved = 1; }
+                if (action == 'q' && x!=0) { x--; moved = 1; }
+                if (action == 'd' && x!=X-1) { x++; moved = 1; }
+            }else{
+                if (action == 'z' && y!=0){change(tab,y,x,1);sel=0;y--;data->coups--;moved=1;}
+                if (action == 's' && y!=Y-1){change(tab,y,x,2);sel=0;y++;data->coups--;moved=1;}
+                if (action == 'q' && x!=0){change(tab,y,x,3);sel=0;x--;data->coups--;moved=1;}
+                if (action == 'd' && x!=X-1){change(tab,y,x,4);sel=0;x++;data->coups--;moved=1;}
+            }
+            if (action == ' '){
+                if(sel == 0)sel=1;
+                else sel=0;
+                moved = 1;
+            }
+            
+            if(moved){
+                recherche_formes(tab, data);
+                affichage_partie(tab, data, y, x, sel);
+                lastTemps = data->tempsR;
+            }
+        } else {
+            // Pas de touche pressée : rafraîchir seulement le temps si changé
+            if(data->tempsR != lastTemps){
+                // Effacer toute la zone droite de la ligne 0
+                gotoxy(80, 0);
+                printf("                    ");  // 20 espaces pour tout effacer
+                gotoxy(CONSOLE_WIDTH - 14, 0);
+                printf("Temps: ");
+                show_time(data->tempsR);
+                fflush(stdout);
+                lastTemps = data->tempsR;
+            }
         }
         
-        recherche_formes(tab, data);
-        affichage_partie(tab, data, y, x, sel, 0);
+        // Vérifier les contrats remplis
         data->etat=0;
         for(int i=0;i<5;i++){
             if(data->Contrat[i+1][0]>=data->Contrat[i+1][1])data->etat++;
         }
-        if (data->coups==0 || action == 'p' || data->etat == 5){
+        
+        // Conditions de fin
+        if (data->coups==0 || action == 'p' || data->etat == 5 || data->tempsR <= 0){
             issues(data);
             break;
         }
-    }while(action = getch());
+        
+        // Petit délai pour éviter de surcharger le CPU
+        Sleep(50);
+    }
 }
 
 void level1(char pseudo[21],int vie){
@@ -99,8 +138,9 @@ void level1(char pseudo[21],int vie){
     data.level = 1;
     data.coups = 30;
     data.vies = vie;
+    data.tempsM = 120;
     strcpy(data.pseudo,pseudo);
-    start_timer(120);
+    start_timer(&data);
     data.Contrat[1][1]=10;
     data.Contrat[2][1]=20;
     data.Contrat[3][1]=10;
@@ -114,8 +154,9 @@ void level2(char pseudo[21],int vie){
     data.level = 2;
     data.coups = 45;
     data.vies = vie;
+    data.tempsM = 120;
     strcpy(data.pseudo,pseudo);
-    start_timer(120);
+    start_timer(&data);
     data.Contrat[1][1]=50;
     data.Contrat[2][1]=30;
     data.Contrat[3][1]=25;
@@ -129,8 +170,9 @@ void level3(char pseudo[21],int vie){
     data.level = 3;
     data.coups = 75;
     data.vies = vie;
+    data.tempsM = 120;
     strcpy(data.pseudo,pseudo);
-    start_timer(120);
+    start_timer(&data);
     data.Contrat[1][1]=100;
     data.Contrat[2][1]=50;
     data.Contrat[3][1]=100;
