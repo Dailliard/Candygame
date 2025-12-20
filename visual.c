@@ -9,7 +9,7 @@
 #include "affichage_console.h"
 #include "chrono.h"
 #include "music.h"
-//Gestion des issues de la partie (victoire/défaite)
+//Gestion de la defaite du level
 void winlevel(Donnees *data){
     char action;
     do{                                                         // Boucle jusqu'à une action valide
