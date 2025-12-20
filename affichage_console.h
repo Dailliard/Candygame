@@ -23,9 +23,9 @@ typedef enum{
     YELLOW,
     WHITE
 } COLORS;
-
+ //Fonctions pour gérer l'affichage dans la console
 void clrscr();
-void gotoxy(int x, int y);
+void gotoxy(int x, int y); 
 void delete_line();
 int wherex();
 int wherey();
