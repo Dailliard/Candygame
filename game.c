@@ -294,6 +294,9 @@ void charge_game(){
         char temps[21];
         int temp1,temp2;
         char ligne[256];
+
+        rewind(f); // Revenir au début du fichier
+
         while(fgets(ligne,sizeof(ligne), f)!=NULL){ // Lire chaque ligne du fichier
             if(sscanf(ligne, "%[^;];%d;%d",temps,&temp1,&temp2)==3){ // Extraire les données
                 if(strcmp(temps,pseudo) == 0){ // Trouver le pseudo correspondant
