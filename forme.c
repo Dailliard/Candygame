@@ -180,7 +180,7 @@ int croix(int tab[Y][X], Donnees *data){
 
 //Fonction pour rechercher les lignes de 7 éléments dans la grille
 int horizontal7(int tab[Y][X], Donnees *data){
-    for(int i = 0; i < Y; i++){ 
+    for(int i = 0; i < Y; i++){                             // Parcourir la grille à partir de la colonne 6
         for(int j = 6; j < X; j++){ 
             if(tab[i][j]==tab[i][j-1] &&                    // Vérifier les 7 éléments
                  tab[i][j]==tab[i][j-2] &&
@@ -207,8 +207,8 @@ int horizontal7(int tab[Y][X], Donnees *data){
 
 //Fonction pour rechercher les formes dans la grille
 int vertical7(int tab[Y][X], Donnees *data){
-    for(int i = 6; i < Y; i++){                             // Commencer à la ligne 6
-        for(int j = 0; j < X; j++){                         // Parcourir les colonnes
+    for(int i = 6; i < Y; i++){                             // Parcourir la grille à partir de la ligne 6
+        for(int j = 0; j < X; j++){                         
             if(tab[i][j]==tab[i-1][j] &&                    // Vérifier les 7 éléments
                  tab[i][j]==tab[i-2][j] &&
                   tab[i][j]==tab[i-3][j] &&
@@ -219,7 +219,7 @@ int vertical7(int tab[Y][X], Donnees *data){
                 int temp = tab[i][j]; 
                 for(int z = 0; z < Y; z++){                 // Parcourir les lignes
                     if(tab[z][j] == temp){                  // Supprimer les éléments correspondants
-                        tab[z][j] = 0;                      // Supprimer les éléments correspondants
+                        tab[z][j] = 0;                      
                         data->Contrat[temp][0]++;           // Mettre à jour le contrat
                     }
                 }
@@ -234,7 +234,7 @@ int vertical7(int tab[Y][X], Donnees *data){
 
 //Fonction pour rechercher les formes dans la grille
 int horizontal6(int tab[Y][X], Donnees *data){
-    for(int i = 0; i < Y; i++){                             // Lire la grille de bas en haut
+    for(int i = 0; i < Y; i++){                             // Parcourir la grille à partir de la colonne 5
         for(int j = 5; j < X; j++){                         
             if(tab[i][j]==tab[i][j-1] &&                    // Vérifier les 6 éléments
                  tab[i][j]==tab[i][j-2] &&
@@ -259,8 +259,8 @@ int horizontal6(int tab[Y][X], Donnees *data){
 
 //Fonction pour rechercher les formes dans la grille
 int vertical6(int tab[Y][X], Donnees *data){
-    for(int i = 5; i < Y; i++){                             // Commencer à la ligne 5
-        for(int j = 0; j < X; j++){                         // Parcourir les colonnes
+    for(int i = 5; i < Y; i++){                             // Parcourir la grille à partir de la ligne 5
+        for(int j = 0; j < X; j++){                         
             if(tab[i][j]==tab[i-1][j] &&                    // Vérifier les 6 éléments
                  tab[i][j]==tab[i-2][j] &&
                   tab[i][j]==tab[i-3][j] &&
@@ -284,7 +284,7 @@ int vertical6(int tab[Y][X], Donnees *data){
 
 //Fonction pour rechercher les formes dans la grille
 int horizontal4(int tab[Y][X], Donnees *data){
-    for(int i = Y-1; i >=0; i--){                           // Lire la grille de bas en haut
+    for(int i = Y-1; i >=0; i--){                           // Parcourir la grille à partir de la colonne 3
         for(int j = 3; j < X; j++){                         
             if(tab[i][j]==tab[i][j-1] &&                    // Horizontale de 4
                  tab[i][j]==tab[i][j-2] &&                  // Vérifier les 4 éléments
@@ -305,15 +305,17 @@ int horizontal4(int tab[Y][X], Donnees *data){
 
 //Fonction pour rechercher les formes dans la grille
 int vertical4(int tab[Y][X], Donnees *data){
-    for(int i = 3; i < Y; i++){                                                             // Commencer à la ligne 3
-        for(int j = 0; j < X; j++){                                                         // Parcourir les colonnes
-            if(tab[i][j]==tab[i-1][j] && tab[i][j]==tab[i-2][j] && tab[i][j]==tab[i-3][j]){ // Verticale de 4
-                data->Contrat[tab[i][j]][0]+=4;                                             // Mettre à jour le contrat
-                tab[i][j] = 0;                                                              // Supprimer les éléments
+    for(int i = 3; i < Y; i++){                            // Parcourir la grille à partir de la ligne 3
+        for(int j = 0; j < X; j++){                        
+            if(tab[i][j]==tab[i-1][j] &&                   // Verticale de 4
+                 tab[i][j]==tab[i-2][j] &&
+                  tab[i][j]==tab[i-3][j]){                 
+                data->Contrat[tab[i][j]][0]+=4;            // Mettre à jour le contrat
+                tab[i][j] = 0;                             // Supprimer les éléments
                 tab[i-1][j] = 0; 
                 tab[i-2][j] = 0;
                 tab[i-3][j] = 0;
-                replace(tab,data);                                                          // Remplacer les éléments
+                replace(tab,data);                         // Remplacer les éléments
                 return 1;
             }
         }
@@ -325,16 +327,16 @@ int vertical4(int tab[Y][X], Donnees *data){
 int recherche_formes(int tab[Y][X], Donnees *data){
     srand(time(NULL));
     int count;
-    do{                                                                                    // Répéter jusqu'à ce qu'aucune forme ne soit trouvée
+    do{                                                    // Répéter jusqu'à ce qu'aucune forme ne soit trouvée
         count = 0;
-        if(data->level>1){                                                                 // Niveaux 2 et 3
-            if(data->level>2){                                                             // Niveau 3
+        if(data->level>1){                                 // Niveaux 2 et 3
+            if(data->level>2){                             // Niveau 3 pour le bonus licorne
                 count += horizontal7(tab, data);
                 count += vertical7(tab, data); 
             }
-            count+=malus(tab, data);                                                       // Niveaux 2 et 3
+            count+=malus(tab, data);                       // Niveaux 2 et 3
         }
-        count += carre(tab, data);                                                         // Tous les niveaux
+        count += carre(tab, data);                         // Tous les niveaux
         count += croix(tab, data); 
         count += horizontal6(tab, data); 
         count += vertical6(tab, data); 

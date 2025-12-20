@@ -1,6 +1,7 @@
 #include <time.h>
 
 #include "utile.h"
+
 //Fonction d'attente en millisecondes
 void attendre(int x){                       // x en secondes
     int ms;

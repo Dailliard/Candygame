@@ -9,6 +9,7 @@
 #include "affichage_console.h"
 #include "chrono.h"
 #include "music.h"
+
 //Gestion des issues de la partie (victoire/défaite)
 void winlevel(Donnees *data){
     char action;
@@ -29,13 +30,13 @@ void winlevel(Donnees *data){
         centre_x = CONSOLE_WIDTH / 2;
         centre_y = 6;
         gotoxy(centre_x-11, centre_y);                          // Centrer le texte
-        printf("----------------------");
-        gotoxy(centre_x-11, centre_y + 1);                      // Affichage de la bordure
+        printf("----------------------");                       // Affichage de la bordure
+        gotoxy(centre_x-11, centre_y + 1);
         printf("|    Félicitation    |");
         gotoxy(centre_x-11, centre_y + 2);
         printf("|         ✅         |");
-        gotoxy(centre_x-11, centre_y + 3);                      // Affichage de la bordure
-        printf("----------------------");
+        gotoxy(centre_x-11, centre_y + 3);
+        printf("----------------------");                       // Affichage de la bordure
         gotoxy(10, centre_y + 5);
         printf("Bravo %s ! Vous avez terminé le niveau %d avec %d vies restantes.\n", data->pseudo, data->level, data->vies);
         gotoxy(10, centre_y + 7);
@@ -44,6 +45,7 @@ void winlevel(Donnees *data){
         printf("[Appuyez sur ESPACE pour le niveau suivant ou q pour sauvegarder et quitter.]\n");
     }while(action = getch());
 }
+
 //Gestion de la victoire finale
 void wingame(Donnees *data){
     do{
@@ -88,6 +90,7 @@ void wingame(Donnees *data){
     }while(getch()!=' ');
     supprimer(data);                                            // Supprimer les données de sauvegarde
 }
+
 //Gestion de la défaite de niveau
 void looselevel(Donnees *data){
     char action='0';
@@ -123,6 +126,7 @@ void looselevel(Donnees *data){
     }while(action = getch());
 
 }
+
 //Gestion de la défaite finale
 void loosegame(Donnees *data){
     do{                                                         // Boucle jusqu'à une action valide
@@ -131,7 +135,7 @@ void loosegame(Donnees *data){
         centre_x = CONSOLE_WIDTH / 2;                           // Calculer le centre de l'écran
         centre_y = 6;
 
-        gotoxy(0, 0);   printf("💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀 Deadpool 💀 Deadpool 💀 Deadpool 💀 Deadpool 💀 Deadpool 💀 Deadpool 💀 Deadpool 💀 Deadpool 💀 Deadpool 💀 Deadpool 💀 Deadpool 💀 Deadpool 💀 Deadpool 💀 Deadpool 💀 Deadpool 💀 Deadpool 💀 Deadpool 💀");
+        gotoxy(0, 0);   printf("💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀");
         for(int y=1; y<25; y++){                                // Bordures latérales avec des emojis
             gotoxy(0, y);   printf("😔");
             gotoxy(CONSOLE_WIDTH-1, y); printf("😵");
@@ -194,6 +198,7 @@ void viewmap(int tab[Y][X], int a, int b, int sel){
     text_color(15);                                             // Réinitialiser la couleur du texte
     printf("\n");
 }
+
 //Affichage du temps restant
 void affichagetemps(Donnees *data){
     gotoxy(CONSOLE_WIDTH - 20, 0);
@@ -203,6 +208,7 @@ void affichagetemps(Donnees *data){
     show_time(data->tempsR);
     fflush(stdout);
 }
+
 //Affichage de la partie
 void affichage_partie(int tab[Y][X], Donnees *data,int y, int x, int sel){
 	system("cls");                                              // Effacer l'écran
@@ -231,6 +237,7 @@ void affichage_partie(int tab[Y][X], Donnees *data,int y, int x, int sel){
     }
     viewmap(tab, y, x, sel);                                    // Affichage de la grille de jeu
 }
+
 //Affichge des règles du jeu
 void rules(void){
     char action;
@@ -254,6 +261,7 @@ void rules(void){
         printf("\nAppuyez sur ESPACE pour revenir au menu principal\n"); // Instructions pour l'utilisateur
     }while(action = getch());
 }
+
 //Affichage des commandes du jeu
 void cmds(void){
     char action;
@@ -268,6 +276,7 @@ void cmds(void){
         printf("\nAppuyez sur ESPACE pour revenir au menu principal\n"); // Instructions pour l'utilisateur
     }while(action = getch());
 }
+
 //Affichage du menu principal
 void menu() {
     char action;

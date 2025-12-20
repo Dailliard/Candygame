@@ -8,6 +8,7 @@
 #pragma comment(lib, "winmm.lib")
 
 static int musique_en_cours = 0;
+
 //Fonction pour démarrer la musique de fond
 void demarrer_musique(void) {
 
@@ -32,6 +33,7 @@ void demarrer_musique(void) {
         musique_en_cours = 1;
     }
 }
+
 //Fonction pour arrêter la musique de fond
 void arreter_musique(void) {
     if (musique_en_cours) {                                                 // La musique est en cours
