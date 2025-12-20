@@ -3,8 +3,6 @@
 
 #include "create.h"
 #include "const.h"
-#include "visual.h"
-#include "utile.h"
 #include "forme.h"
 
 //Fonction pour créer et initialiser la grille de jeu

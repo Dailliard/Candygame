@@ -1,7 +1,4 @@
-#include <time.h>
 #include <stdlib.h>
-#include <stdio.h>
-#include <conio.h>
 #include <windows.h>
 
 #include "const.h"
@@ -196,7 +193,8 @@ int horizontal7(int tab[Y][X], Donnees *data){
                          tab[i][a] = 0; 
                     }
                 }
-                tab[i][j]=6;
+
+                tab[i][j]=6;                                // Ajouter une licorne bonus
                 replace(tab,data);                          // Remplacer les éléments
                 return 1;
             }
@@ -223,7 +221,8 @@ int vertical7(int tab[Y][X], Donnees *data){
                         data->Contrat[temp][0]++;           // Mettre à jour le contrat
                     }
                 }
-                tab[i][j]=6; 
+
+                tab[i][j]=6;                                // Ajouter une licorne bonus
                 replace(tab,data);                          // Remplacer les éléments
                 return 1;
             }

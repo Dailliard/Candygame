@@ -1,7 +1,9 @@
 #ifndef GAME_H
 #define GAME_H
 
-//charge le niveau correspondant au pseudo
+#include "const.h"
+
+//Charge le niveau correspondant au pseudo
 void chargelevel(char pseudo[21]);
 
 //Sauvegarde des données du jeu

@@ -3,7 +3,7 @@
 
 #include "const.h"
 
-//Ajouter des éléments aléatoires dans la grille
+//Fonctions pour rechercher les formes dans la grille
 int recherche_formes(int tab[Y][X], Donnees *data);
 
 #endif
