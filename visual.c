@@ -180,12 +180,12 @@ void viewmap(int tab[Y][X], int a, int b, int sel){
     for(int y = 0; y < Y; y++){                                 // Parcourir les lignes
         gotoxy(25, y+3);                                        // Positionner le curseur
         for(int x =  0; x < X; x++){                            // Parcourir les colonnes
-            if(a==y && b==x){
-                if(sel==0)text_color(4);                        // Case sélectionnée
+            if(a==y && b==x){                                   // Case du pointeur
+                if(sel==0)text_color(4);                        // Case sélectionnée ou non
                 else text_color(2); 
                 printf("|%s|", emoji[tab[y][x]]);               // Afficher l'emoji avec une bordure
             }
-            else {                                              // Case non sélectionnée
+            else {                                              // Case hors pointeur
                 text_color(0);
                 printf(" %s ", emoji[tab[y][x]]);
             }
